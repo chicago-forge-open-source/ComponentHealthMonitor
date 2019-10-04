@@ -30,7 +30,6 @@ public class MainActivity extends AppCompatActivity implements ThingySdkManager.
     private BluetoothThingyListener thingyListener;
     private ProgressBar componentHealthBar;
     private BleItem connectedDevice;
-    private TextView deviceName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +40,6 @@ public class MainActivity extends AppCompatActivity implements ThingySdkManager.
         binding.setViewModel(viewModel);
 
         componentHealthBar = findViewById(R.id.component_health_bar);
-        deviceName = findViewById(R.id.header_device_name);
         thingySdkManager = ThingySdkManager.getInstance();
     }
 
@@ -77,6 +75,6 @@ public class MainActivity extends AppCompatActivity implements ThingySdkManager.
 
     @Override
     public void onServiceConnected() {
-        //TODO
+        viewModel.afterInitialDiscoveryCompleted(thingySdkManager, connectedDevice);
     }
 }

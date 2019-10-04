@@ -25,4 +25,9 @@ public class MainActivityViewModel extends ViewModel {
         return deviceName;
     }
 
+    void afterInitialDiscoveryCompleted(ThingySdkManager sdkManager, BleItem device) {
+        BluetoothDevice bluetoothDevice = device.getDevice();
+        sdkManager.enableButtonStateNotification(bluetoothDevice, true);
+        sdkManager.enableMotionNotifications(bluetoothDevice, true);
+    }
 }
