@@ -18,8 +18,8 @@ import static android.content.Context.BLUETOOTH_SERVICE;
 
 public class PermissionsHelper {
 
-    private static final int ACCESS_COARSE_LOCATION_CODE = 1;
-    private static final int BLE_REQUEST_CODE = 2;
+    public static final int ACCESS_COARSE_LOCATION_CODE = 1;
+    public static final int BLE_REQUEST_CODE = 2;
     private Activity activity;
 
     public PermissionsHelper(Activity activity) {

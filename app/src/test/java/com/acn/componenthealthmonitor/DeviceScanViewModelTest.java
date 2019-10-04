@@ -53,4 +53,6 @@ public class DeviceScanViewModelTest {
         boolean result = viewModel.prepareForScanning(mockHelper);
         assertTrue(result);
     }
+
+
 }
