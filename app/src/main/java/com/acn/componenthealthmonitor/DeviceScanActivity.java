@@ -24,6 +24,7 @@ import static com.acn.componenthealthmonitor.PermissionsHelper.ACCESS_COARSE_LOC
 
 public class DeviceScanActivity extends AppCompatActivity {
 
+    static final int INITIAL_CONFIGURATION_RESULT = 3;
     private ActivityDeviceScanBinding binding;
     private DeviceScanViewModel viewModel;
     private BleRecyclerAdapter adapter;

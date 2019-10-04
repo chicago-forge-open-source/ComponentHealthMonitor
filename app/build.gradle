@@ -20,7 +20,10 @@ android {
     dataBinding {
         enabled = true
     }
-
+    repositories {
+        jcenter()
+        maven { url "https://jitpack.io" }
+    }
 }
 
 dependencies {
@@ -34,11 +37,13 @@ dependencies {
     testImplementation 'org.robolectric:robolectric:4.3'
     testImplementation 'androidx.test:core:1.2.0'
     implementation 'com.google.android.material:material:1.1.0-alpha10'
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0'
 
     //Thingy lib
     implementation project(path: ':thingylib')
     //Scanner lib
     implementation 'no.nordicsemi.android.support.v18:scanner:1.4.2'
-    implementation 'androidx.recyclerview:recyclerview:1.0.0'
-    implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0'
+    //Charts lib
+    implementation 'com.github.PhilJay:MPAndroidChart:v2.2.5'
 }

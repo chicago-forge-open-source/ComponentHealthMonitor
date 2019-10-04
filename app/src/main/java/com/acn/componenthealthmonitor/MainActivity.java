@@ -7,8 +7,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import no.nordicsemi.android.thingylib.ThingyListenerHelper;
 import no.nordicsemi.android.thingylib.ThingySdkManager;
+
+import static com.acn.componenthealthmonitor.DeviceScanActivity.INITIAL_CONFIGURATION_RESULT;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -27,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
         thingySdkManager.bindService(this, ThingyService.class);
         ThingyListenerHelper.registerThingyListener(this, thingyListener);
+        setConnectOnClickListener();
     }
 
     @Override
@@ -44,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent initialConfiguration = new Intent(MainActivity.this, DeviceScanActivity.class);
-                startActivityForResult(initialConfiguration, Utils.INITIAL_CONFIGURATION_RESULT);
+                startActivityForResult(initialConfiguration, INITIAL_CONFIGURATION_RESULT);
             }
         });
     }
