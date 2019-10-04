@@ -15,6 +15,7 @@ public class DeviceScanActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_device_scan);
 
         viewModel = ViewModelProviders.of(this).get(DeviceScanViewModel.class);
