@@ -1,23 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/apartment_holder"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:padding="10dp">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <TextView
-        android:id="@+id/nameLabel"
-        android:layout_width="0dp"
+    <LinearLayout
+        android:id="@+id/apartment_holder"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:textSize="18sp"/>
+        android:orientation="horizontal"
+        android:padding="10dp">
 
-    <TextView
-        android:id="@+id/addressLabel"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:textSize="18sp" />
-</LinearLayout>
+        <TextView
+            android:id="@+id/nameLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/addressLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="item"
+            type="com.acn.componenthealthmonitor.BleItem" />
+    </data>
+
+</layout>
