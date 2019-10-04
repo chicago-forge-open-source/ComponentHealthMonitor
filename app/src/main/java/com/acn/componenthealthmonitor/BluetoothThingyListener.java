@@ -8,9 +8,11 @@ import no.nordicsemi.android.thingylib.ThingySdkManager;
 public class BluetoothThingyListener implements ThingyListener {
 
     private MainActivityViewModel viewModel;
+    private ThingySdkManager thingySdkManager;
 
-    public BluetoothThingyListener(MainActivityViewModel viewModel) {
+    public BluetoothThingyListener(MainActivityViewModel viewModel, ThingySdkManager thingySdkManager) {
         this.viewModel = viewModel;
+        this.thingySdkManager = thingySdkManager;
     }
 
     @Override
@@ -25,6 +27,7 @@ public class BluetoothThingyListener implements ThingyListener {
 
     @Override
     public void onServiceDiscoveryCompleted(BluetoothDevice device) {
+        viewModel.afterInitialDiscoveryCompleted(thingySdkManager, device);
     }
 
     @Override
