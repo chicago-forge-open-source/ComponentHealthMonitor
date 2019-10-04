@@ -1,33 +1,47 @@
 package com.acn.componenthealthmonitor;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.bluetooth.BluetoothDevice;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.ViewModelProviders;
+
+import com.acn.componenthealthmonitor.databinding.ActivityMainBinding;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import no.nordicsemi.android.thingylib.ThingyListenerHelper;
 import no.nordicsemi.android.thingylib.ThingySdkManager;
 
+import static com.acn.componenthealthmonitor.BleRecyclerAdapter.EXTRA_BLUETOOTH;
 import static com.acn.componenthealthmonitor.DeviceScanActivity.INITIAL_CONFIGURATION_RESULT;
 
-public class MainActivity extends AppCompatActivity implements ThingySdkManager.ServiceConnectionListener{
+public class MainActivity extends AppCompatActivity implements ThingySdkManager.ServiceConnectionListener {
 
+    private MainActivityViewModel viewModel;
+    private ActivityMainBinding binding;
     private ThingySdkManager thingySdkManager;
     private BluetoothThingyListener thingyListener;
     private ProgressBar componentHealthBar;
+    private BleItem connectedDevice;
+    private TextView deviceName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        viewModel = ViewModelProviders.of(this).get(MainActivityViewModel.class);
+
+        binding.setViewModel(viewModel);
 
         componentHealthBar = findViewById(R.id.component_health_bar);
-
+        deviceName = findViewById(R.id.header_device_name);
         thingySdkManager = ThingySdkManager.getInstance();
     }
 
@@ -45,7 +59,8 @@ public class MainActivity extends AppCompatActivity implements ThingySdkManager.
         super.onActivityResult(requestCode, resultCode, data);
 
         if (resultCode == RESULT_OK && data != null) {
-            //TODO
+            connectedDevice = data.getParcelableExtra(EXTRA_BLUETOOTH);
+            viewModel.connectToDevice(this, thingySdkManager, connectedDevice);
         }
     }
 

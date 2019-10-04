@@ -19,8 +19,8 @@ public class BleItem implements Parcelable {
     }
 
     protected BleItem(Parcel in) {
-        device = in.readParcelable(BluetoothDevice.class.getClassLoader());
         name = in.readString();
+        device = in.readParcelable(BluetoothDevice.class.getClassLoader());
     }
 
     public static final Creator<BleItem> CREATOR = new Creator<BleItem>() {

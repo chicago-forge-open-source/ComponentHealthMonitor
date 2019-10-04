@@ -51,7 +51,7 @@ class BleRecyclerAdapter extends RecyclerView.Adapter<BleRecyclerAdapter.BleView
     }
 
     private void setItemOnClickListener(@NonNull BleViewHolder holder, final BleItem item) {
-        holder.view.setOnClickListener(new View.OnClickListener() {
+        holder.binding.getRoot().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 handleClickReturnsToMain(item);
@@ -67,7 +67,6 @@ class BleRecyclerAdapter extends RecyclerView.Adapter<BleRecyclerAdapter.BleView
     }
 
     class BleViewHolder extends RecyclerView.ViewHolder {
-        private View view;
         private ListBleItemBinding binding;
 
         BleViewHolder(ListBleItemBinding binding) {

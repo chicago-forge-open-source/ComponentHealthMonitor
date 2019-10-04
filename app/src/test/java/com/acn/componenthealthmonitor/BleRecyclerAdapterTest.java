@@ -1,7 +1,6 @@
 package com.acn.componenthealthmonitor;
 
 import android.app.Activity;
-import android.bluetooth.BluetoothDevice;
 import android.content.Intent;
 
 import org.junit.Test;
