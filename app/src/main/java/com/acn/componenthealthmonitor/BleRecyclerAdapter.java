@@ -1,5 +1,7 @@
 package com.acn.componenthealthmonitor;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +16,13 @@ import java.util.List;
 
 class BleRecyclerAdapter extends RecyclerView.Adapter<BleRecyclerAdapter.BleViewHolder> {
 
+    static final String EXTRA_BLUETOOTH = "EXTRA_BLUETOOTH";
     private List<BleItem> items;
+    private Activity parentActivity;
+
+    public BleRecyclerAdapter(Activity parentActivity) {
+        this.parentActivity = parentActivity;
+    }
 
     @NonNull
     @Override
@@ -29,6 +37,7 @@ class BleRecyclerAdapter extends RecyclerView.Adapter<BleRecyclerAdapter.BleView
         BleItem item = items.get(position);
 
         holder.bind(item);
+        setItemOnClickListener(holder, item);
     }
 
     @Override
@@ -39,6 +48,22 @@ class BleRecyclerAdapter extends RecyclerView.Adapter<BleRecyclerAdapter.BleView
     public void setItems(List<BleItem> items) {
         this.items = items;
         notifyDataSetChanged();
+    }
+
+    private void setItemOnClickListener(@NonNull BleViewHolder holder, final BleItem item) {
+        holder.view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                handleClickReturnsToMain(item);
+            }
+        });
+    }
+
+    void handleClickReturnsToMain(BleItem item) {
+        Intent intent = new Intent();
+        intent.putExtra(EXTRA_BLUETOOTH, item);
+        parentActivity.setResult(Activity.RESULT_OK, intent);
+        parentActivity.finish();
     }
 
     class BleViewHolder extends RecyclerView.ViewHolder {

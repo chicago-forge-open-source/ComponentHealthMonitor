@@ -38,7 +38,7 @@ public class DeviceScanActivity extends AppCompatActivity {
         binding.setDeviceScanViewModel(viewModel);
 
         binding.setLifecycleOwner(this);
-        adapter = new BleRecyclerAdapter();
+        adapter = new BleRecyclerAdapter(this);
 
         RecyclerView recyclerView = binding.bleRecycler;
         recyclerView.setAdapter(adapter);
