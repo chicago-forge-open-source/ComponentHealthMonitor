@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.provider.Settings;
+import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -26,10 +27,6 @@ public class PermissionsHelper {
         this.activity = activity;
     }
 
-    public boolean hasCoarseLocationPermission() {
-        return ActivityCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED;
-    }
-
     public boolean isLocationEnabled() {
         int locationMode = Settings.Secure.LOCATION_MODE_OFF;
         try {
@@ -38,6 +35,14 @@ public class PermissionsHelper {
             // do nothing
         }
         return locationMode != Settings.Secure.LOCATION_MODE_OFF;
+    }
+
+    public void enableLocation() {
+        Log.v("***", "Location services are disabled");
+    }
+
+    public boolean hasCoarseLocationPermission() {
+        return ActivityCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED;
     }
 
     public void requestCoarseLocationPermissions() {

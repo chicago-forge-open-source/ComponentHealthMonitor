@@ -27,7 +27,7 @@ public class DeviceScanViewModel extends ViewModel {
                     helper.enableBle();
                 }
             } else {
-                Log.v("***", "Location services are disabled");
+                helper.enableLocation();
             }
         } else {
             helper.requestCoarseLocationPermissions();
