@@ -36,4 +36,14 @@ public class BluetoothThingyListenerTest {
 
         verify(mockChartManager).addAccelerationVectorEntry(1, 2, 3);
     }
+
+    @Test
+    public void onGravityVectorChanged_sendsDataToChartManager() {
+        LineChartManager mockChartManager = mock(LineChartManager.class);
+        BluetoothThingyListener listener = new BluetoothThingyListener(null, null, mockChartManager);
+
+        listener.onGravityVectorChangedEvent(null, 1 , 2, 3);
+
+        verify(mockChartManager).addGravityVectorEntry(1, 2, 3);
+    }
 }
