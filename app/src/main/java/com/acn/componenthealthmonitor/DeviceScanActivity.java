@@ -29,6 +29,8 @@ public class DeviceScanActivity extends AppCompatActivity {
 
         RecyclerView recyclerView = binding.bleRecycler;
         recyclerView.setAdapter(adapter);
+
+        viewModel.prepareForScanning(new PermissionsHelper(this));
     }
 
 

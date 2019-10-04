@@ -1,5 +1,6 @@
 package com.acn.componenthealthmonitor;
 
+import android.Manifest;
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
@@ -19,18 +20,16 @@ import static org.mockito.Mockito.verify;
 public class PermissionsHelperTest {
 
     private Activity mockActivity = mock(Activity.class);
+    private PermissionsHelper helper = new PermissionsHelper(mockActivity);
+    private ArgumentCaptor<Intent> captor = ArgumentCaptor.forClass(Intent.class);
+
     @Test
     public void enableBleSendsIntent() {
-        PermissionsHelper helper = new PermissionsHelper(mockActivity);
-
         helper.enableBle();
 
-        ArgumentCaptor<Intent> captor = ArgumentCaptor.forClass(Intent.class);
-
         verify(mockActivity).startActivityForResult(captor.capture(), eq(2));
-
         Intent result = captor.getValue();
 
-        assertEquals(result.getAction(), BluetoothAdapter.ACTION_REQUEST_ENABLE);
+        assertEquals(BluetoothAdapter.ACTION_REQUEST_ENABLE, result.getAction());
     }
 }

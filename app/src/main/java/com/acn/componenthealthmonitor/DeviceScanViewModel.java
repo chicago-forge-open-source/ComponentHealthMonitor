@@ -1,5 +1,7 @@
 package com.acn.componenthealthmonitor;
 
+import android.util.Log;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -14,5 +16,21 @@ public class DeviceScanViewModel extends ViewModel {
 
     public DeviceScanViewModel() {
         _items.setValue(Collections.<BleItem>emptyList());
+    }
+
+    void prepareForScanning(PermissionsHelper helper) {
+        if (helper.hasCoarseLocationPermission()) {
+            if (helper.isLocationEnabled()) {
+                if (helper.isBleEnabled()) {
+                    //TODO
+                } else {
+                    helper.enableBle();
+                }
+            } else {
+                Log.v("***", "Location services are disabled");
+            }
+        } else {
+            helper.requestCoarseLocationPermissions();
+        }
     }
 }
