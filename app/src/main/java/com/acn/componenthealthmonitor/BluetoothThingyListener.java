@@ -3,8 +3,15 @@ package com.acn.componenthealthmonitor;
 import android.bluetooth.BluetoothDevice;
 
 import no.nordicsemi.android.thingylib.ThingyListener;
+import no.nordicsemi.android.thingylib.ThingySdkManager;
 
 public class BluetoothThingyListener implements ThingyListener {
+
+    private MainActivityViewModel viewModel;
+
+    public BluetoothThingyListener(MainActivityViewModel viewModel) {
+        this.viewModel = viewModel;
+    }
 
     @Override
     public void onDeviceConnected(BluetoothDevice device, int connectionState) {
@@ -18,7 +25,6 @@ public class BluetoothThingyListener implements ThingyListener {
 
     @Override
     public void onServiceDiscoveryCompleted(BluetoothDevice device) {
-
     }
 
     @Override
