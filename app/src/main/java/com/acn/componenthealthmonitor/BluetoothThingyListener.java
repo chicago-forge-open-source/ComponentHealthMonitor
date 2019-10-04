@@ -9,10 +9,12 @@ public class BluetoothThingyListener implements ThingyListener {
 
     private MainActivityViewModel viewModel;
     private ThingySdkManager thingySdkManager;
+    private LineChartManager chartManager;
 
-    public BluetoothThingyListener(MainActivityViewModel viewModel, ThingySdkManager thingySdkManager) {
+    public BluetoothThingyListener(MainActivityViewModel viewModel, ThingySdkManager thingySdkManager, LineChartManager chartManager) {
         this.viewModel = viewModel;
         this.thingySdkManager = thingySdkManager;
+        this.chartManager = chartManager;
     }
 
     @Override

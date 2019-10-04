@@ -8,7 +8,6 @@ import org.robolectric.RobolectricTestRunner;
 
 import no.nordicsemi.android.thingylib.ThingySdkManager;
 
-import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.mock;
@@ -21,7 +20,7 @@ public class BluetoothThingyListenerTest {
     public void onServiceDiscoveryCompleted_callsViewModel() {
         ThingySdkManager mockThingySdkManager = mock(ThingySdkManager.class);
         MainActivityViewModel mockViewModel = mock(MainActivityViewModel.class);
-        BluetoothThingyListener listener = new BluetoothThingyListener(mockViewModel, mockThingySdkManager);
+        BluetoothThingyListener listener = new BluetoothThingyListener(mockViewModel, mockThingySdkManager, null);
 
         listener.onServiceDiscoveryCompleted(null);
 

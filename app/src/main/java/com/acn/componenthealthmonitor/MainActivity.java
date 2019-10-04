@@ -14,6 +14,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.acn.componenthealthmonitor.databinding.ActivityMainBinding;
+import com.github.mikephil.charting.charts.LineChart;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import no.nordicsemi.android.thingylib.ThingyListenerHelper;
@@ -30,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements ThingySdkManager.
     private BluetoothThingyListener thingyListener;
     private ProgressBar componentHealthBar;
     private BleItem connectedDevice;
+    private LineChartManager chartManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,11 +39,12 @@ public class MainActivity extends AppCompatActivity implements ThingySdkManager.
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         viewModel = ViewModelProviders.of(this).get(MainActivityViewModel.class);
 
+        configureCharts();
         binding.setViewModel(viewModel);
 
         componentHealthBar = findViewById(R.id.component_health_bar);
         thingySdkManager = ThingySdkManager.getInstance();
-        thingyListener = new BluetoothThingyListener(viewModel, thingySdkManager);
+        thingyListener = new BluetoothThingyListener(viewModel, thingySdkManager, chartManager);
     }
 
     @Override
@@ -86,5 +89,14 @@ public class MainActivity extends AppCompatActivity implements ThingySdkManager.
         if (thingySdkManager.hasInitialServiceDiscoverCompleted(device)) {
             viewModel.afterInitialDiscoveryCompleted(thingySdkManager, device);
         }
+    }
+
+    private void configureCharts() {
+        LineChart gravityChart = findViewById(R.id.line_chart_gravity_vector);
+        LineChart accelerationChart = findViewById(R.id.line_chart_acceleration_vector);
+
+        chartManager = new LineChartManager(this, gravityChart, accelerationChart);
+        chartManager.prepareVectorChart(gravityChart, -10f, 10f, "Gravity Chart");
+        chartManager.prepareVectorChart(accelerationChart, -5f, 5f, "Acceleration Chart");
     }
 }
