@@ -2,6 +2,6 @@ package com.acn.componenthealthmonitor;
 
 import androidx.lifecycle.ViewModel;
 
-class DeviceScanViewModel extends ViewModel {
+public class DeviceScanViewModel extends ViewModel {
 
 }
