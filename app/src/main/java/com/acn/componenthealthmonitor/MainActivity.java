@@ -14,7 +14,7 @@ import no.nordicsemi.android.thingylib.ThingySdkManager;
 
 import static com.acn.componenthealthmonitor.DeviceScanActivity.INITIAL_CONFIGURATION_RESULT;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements ThingySdkManager.ServiceConnectionListener{
 
     private ThingySdkManager thingySdkManager;
     private BluetoothThingyListener thingyListener;
@@ -23,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        thingySdkManager = ThingySdkManager.getInstance();
     }
 
     @Override
@@ -52,5 +54,10 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(initialConfiguration, INITIAL_CONFIGURATION_RESULT);
             }
         });
+    }
+
+    @Override
+    public void onServiceConnected() {
+        //TODO
     }
 }

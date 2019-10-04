@@ -35,7 +35,7 @@ public class DeviceScanActivity extends AppCompatActivity {
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_device_scan);
         viewModel = ViewModelProviders.of(this).get(DeviceScanViewModel.class);
-
+        binding.setDeviceScanViewModel(viewModel);
 
         binding.setLifecycleOwner(this);
         adapter = new BleRecyclerAdapter();

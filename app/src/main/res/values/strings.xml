@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">BluetoothCar</string>
+    <string name="app_name">ComponentHealthMonitor</string>
     <string name="connect">Connect</string>
     <string name="vector_z">Vector Z</string>
     <string name="vector_y">Vector Y</string>
