@@ -14,5 +14,4 @@ public class BleItem {
     public String getName() {
         return name;
     }
-
 }
