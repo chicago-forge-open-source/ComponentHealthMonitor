@@ -4,6 +4,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
 
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -16,17 +18,19 @@ public class DeviceScanViewModelTest {
 
     @Test
     public void prepareForScanning_doesNotHaveCoarseLocation() {
-        viewModel.prepareForScanning(mockHelper);
+        boolean result = viewModel.prepareForScanning(mockHelper);
 
         verify(mockHelper).requestCoarseLocationPermissions();
+        assertFalse(result);
     }
 
     @Test
     public void prepareForScanning_doesNotHaveLocationTurnedOn() {
         when(mockHelper.hasCoarseLocationPermission()).thenReturn(true);
-        viewModel.prepareForScanning(mockHelper);
+        boolean result = viewModel.prepareForScanning(mockHelper);
 
         verify(mockHelper).enableLocation();
+        assertFalse(result);
     }
 
     @Test
@@ -34,8 +38,19 @@ public class DeviceScanViewModelTest {
         when(mockHelper.hasCoarseLocationPermission()).thenReturn(true);
         when(mockHelper.isLocationEnabled()).thenReturn(true);
 
-        viewModel.prepareForScanning(mockHelper);
+        boolean result = viewModel.prepareForScanning(mockHelper);
 
         verify(mockHelper).enableBle();
+        assertFalse(result);
+    }
+
+    @Test
+    public void prepareForScanning_hasAllPermissions() {
+        when(mockHelper.hasCoarseLocationPermission()).thenReturn(true);
+        when(mockHelper.isLocationEnabled()).thenReturn(true);
+        when(mockHelper.isBleEnabled()).thenReturn(true);
+
+        boolean result = viewModel.prepareForScanning(mockHelper);
+        assertTrue(result);
     }
 }
