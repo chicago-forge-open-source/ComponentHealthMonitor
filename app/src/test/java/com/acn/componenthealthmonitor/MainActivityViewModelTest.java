@@ -65,4 +65,13 @@ public class MainActivityViewModelTest {
 
         verify(mockThingySdkManager).enableMotionNotifications((BluetoothDevice) any(), eq(true));
     }
+
+    @Test
+    public void afterInitialDiscoveryCompleted_enablesButtonStateNotification() {
+        ThingySdkManager mockThingySdkManager = mock(ThingySdkManager.class);
+
+        viewModel.afterInitialDiscoveryCompleted(mockThingySdkManager, bleItem);
+
+        verify(mockThingySdkManager).enableButtonStateNotification((BluetoothDevice) any(), eq(true));
+    }
 }
