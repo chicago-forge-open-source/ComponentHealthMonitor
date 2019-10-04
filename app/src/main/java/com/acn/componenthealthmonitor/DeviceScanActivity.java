@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 
@@ -22,6 +23,11 @@ public class DeviceScanActivity extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_device_scan);
         viewModel = ViewModelProviders.of(this).get(DeviceScanViewModel.class);
 
+
+        binding.setLifecycleOwner(this);
         adapter = new BleRecyclerAdapter();
+
+        RecyclerView recyclerView = binding.bleRecycler;
+        recyclerView.setAdapter(adapter);
     }
 }
