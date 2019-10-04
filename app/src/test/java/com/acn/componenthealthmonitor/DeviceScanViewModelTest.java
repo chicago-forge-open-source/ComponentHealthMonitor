@@ -16,7 +16,6 @@ public class DeviceScanViewModelTest {
 
     @Test
     public void prepareForScanning_doesNotHaveCoarseLocation() {
-
         viewModel.prepareForScanning(mockHelper);
 
         verify(mockHelper).requestCoarseLocationPermissions();
@@ -30,4 +29,13 @@ public class DeviceScanViewModelTest {
         verify(mockHelper).enableLocation();
     }
 
+    @Test
+    public void prepareForScanning_doesNotHaveBluetoothTurnedOn() {
+        when(mockHelper.hasCoarseLocationPermission()).thenReturn(true);
+        when(mockHelper.isLocationEnabled()).thenReturn(true);
+
+        viewModel.prepareForScanning(mockHelper);
+
+        verify(mockHelper).enableBle();
+    }
 }
