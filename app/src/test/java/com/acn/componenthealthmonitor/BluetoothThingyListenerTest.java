@@ -26,4 +26,14 @@ public class BluetoothThingyListenerTest {
 
         verify(mockViewModel).afterInitialDiscoveryCompleted(eq(mockThingySdkManager), (BluetoothDevice) any());
     }
+
+    @Test
+    public void onAccelerometerValueChanged_sendsDataToChartManager() {
+        LineChartManager mockChartManager = mock(LineChartManager.class);
+        BluetoothThingyListener listener = new BluetoothThingyListener(null, null, mockChartManager);
+
+        listener.onAccelerometerValueChangedEvent(null, 1 , 2, 3);
+
+        verify(mockChartManager).addAccelerationVectorEntry(1, 2, 3);
+    }
 }

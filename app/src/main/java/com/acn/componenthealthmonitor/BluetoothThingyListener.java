@@ -89,7 +89,7 @@ public class BluetoothThingyListener implements ThingyListener {
 
     @Override
     public void onAccelerometerValueChangedEvent(BluetoothDevice bluetoothDevice, float x, float y, float z) {
-
+        chartManager.addAccelerationVectorEntry(x, y, z);
     }
 
     @Override
@@ -119,7 +119,7 @@ public class BluetoothThingyListener implements ThingyListener {
 
     @Override
     public void onGravityVectorChangedEvent(BluetoothDevice bluetoothDevice, float x, float y, float z) {
-
+        chartManager.addGravityVectorEntry(x, y, z);
     }
 
     @Override
