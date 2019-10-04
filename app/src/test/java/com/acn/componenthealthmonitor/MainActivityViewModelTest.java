@@ -29,15 +29,6 @@ public class MainActivityViewModelTest {
     }
 
     @Test
-    public void connectToDevice_setsDeviceName() {
-        BleItem bleItem = new BleItem();
-        bleItem.setName("Test");
-        viewModel.connectToDevice(null, null, bleItem);
-
-        assertEquals(bleItem.getName(), viewModel.getDeviceName());
-    }
-
-    @Test
     public void connectToDevice_connectsToThingy() {
         Context mockContext = mock(Context.class);
         ThingySdkManager mockThingySdkManager = mock(ThingySdkManager.class);
