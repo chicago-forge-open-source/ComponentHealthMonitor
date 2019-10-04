@@ -29,4 +29,5 @@ dependencies {
 
     //Thingy lib
     implementation project(path: ':thingylib')
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
 }
