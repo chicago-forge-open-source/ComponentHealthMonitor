@@ -1,9 +1,6 @@
 package com.acn.componenthealthmonitor;
 
-import android.content.Context;
 import android.graphics.Color;
-
-import androidx.core.content.ContextCompat;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Legend;
@@ -24,12 +21,10 @@ import no.nordicsemi.android.thingylib.utils.ThingyUtils;
 
 class LineChartManager {
 
-    private Context context;
     private final LineChart lineChartGravity;
     private final LineChart lineChartAcceleration;
 
-    LineChartManager(Context context, LineChart lineChartGravityVector, LineChart lineChartAccelerationVector) {
-        this.context = context;
+    LineChartManager(LineChart lineChartGravityVector, LineChart lineChartAccelerationVector) {
         this.lineChartGravity = lineChartGravityVector;
         this.lineChartAcceleration = lineChartAccelerationVector;
     }
@@ -93,7 +88,7 @@ class LineChartManager {
         }
     }
 
-    private void configureChartSettings(LineChart lineChart) {
+    void configureChartSettings(LineChart lineChart) {
         lineChart.setTouchEnabled(true);
         lineChart.setDragEnabled(true);
         lineChart.setPinchZoom(true);
@@ -128,9 +123,9 @@ class LineChartManager {
     private LineDataSet[] createVectorDataSet() {
         final LineDataSet[] lineDataSets = new LineDataSet[3];
 
-        configureAxisDataSet(lineDataSets, "X", R.color.red, 0);
-        configureAxisDataSet(lineDataSets, "Y", R.color.green, 1);
-        configureAxisDataSet(lineDataSets, "Z", R.color.blue, 2);
+        configureAxisDataSet(lineDataSets, "X", Color.RED, 0);
+        configureAxisDataSet(lineDataSets, "Y", Color.GREEN, 1);
+        configureAxisDataSet(lineDataSets, "Z", Color.BLUE, 2);
 
         return lineDataSets;
     }
@@ -141,8 +136,8 @@ class LineChartManager {
 
         LineDataSet dataSet = new LineDataSet(null, axis);
         dataSet.setAxisDependency(YAxis.AxisDependency.LEFT);
-        dataSet.setColor(ContextCompat.getColor(context, color));
-        dataSet.setHighLightColor(ContextCompat.getColor(context, R.color.colorAccent));
+
+        dataSet.setColor(color);
         dataSet.setValueFormatter(new VectorChartValueFormatter());
         dataSet.setDrawValues(true);
         dataSet.setDrawCircles(true);

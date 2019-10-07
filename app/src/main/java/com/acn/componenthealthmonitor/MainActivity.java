@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -99,7 +98,7 @@ public class MainActivity extends AppCompatActivity implements ThingySdkManager.
         LineChart gravityChart = findViewById(R.id.line_chart_gravity_vector);
         LineChart accelerationChart = findViewById(R.id.line_chart_acceleration_vector);
 
-        chartManager = new LineChartManager(this, gravityChart, accelerationChart);
+        chartManager = new LineChartManager(gravityChart, accelerationChart);
         chartManager.prepareVectorChart(gravityChart, -10f, 10f, "Gravity Chart");
         chartManager.prepareVectorChart(accelerationChart, -5f, 5f, "Acceleration Chart");
     }
