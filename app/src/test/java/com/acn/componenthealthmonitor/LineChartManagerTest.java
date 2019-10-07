@@ -173,4 +173,13 @@ public class LineChartManagerTest {
 
         assertEquals(3, lineChart.getAxisLeft().getLabelCount());
     }
+
+    @Test
+    public void configureYAxis_setDrawZeroLineEnabled() {
+        LineChart lineChart = new LineChart(context);
+
+        lineChartManager.configureYAxis(lineChart, -1, 1);
+
+        assertTrue(lineChart.getAxisLeft().isDrawZeroLineEnabled());
+    }
 }
