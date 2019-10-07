@@ -8,13 +8,15 @@ import androidx.databinding.Observable;
 import androidx.databinding.PropertyChangeRegistry;
 import androidx.lifecycle.ViewModel;
 
+import com.acn.componenthealthmonitor.bleItem.BleItem;
+
 import no.nordicsemi.android.thingylib.ThingySdkManager;
 
 public class MainActivityViewModel extends ViewModel implements Observable {
 
-    private PropertyChangeRegistry callbacks = new PropertyChangeRegistry();
     @Bindable
     private String deviceName = "No Device Connected";
+    private PropertyChangeRegistry callbacks = new PropertyChangeRegistry();
 
     @Override
     public void addOnPropertyChangedCallback(OnPropertyChangedCallback callback) {

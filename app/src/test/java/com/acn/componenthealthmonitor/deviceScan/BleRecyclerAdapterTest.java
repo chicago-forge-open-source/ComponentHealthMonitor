@@ -1,7 +1,9 @@
-package com.acn.componenthealthmonitor;
+package com.acn.componenthealthmonitor.deviceScan;
 
 import android.app.Activity;
 import android.content.Intent;
+
+import com.acn.componenthealthmonitor.bleItem.BleItem;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

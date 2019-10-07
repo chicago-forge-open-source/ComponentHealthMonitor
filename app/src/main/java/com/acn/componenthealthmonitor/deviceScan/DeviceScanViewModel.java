@@ -6,7 +6,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.acn.componenthealthmonitor.BleItem;
+import com.acn.componenthealthmonitor.bleItem.BleItem;
 import com.acn.componenthealthmonitor.PermissionsHelper;
 
 import java.util.ArrayList;

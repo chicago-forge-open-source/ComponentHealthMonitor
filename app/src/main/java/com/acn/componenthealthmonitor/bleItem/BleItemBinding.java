@@ -1,7 +1,9 @@
-package com.acn.componenthealthmonitor;
+package com.acn.componenthealthmonitor.bleItem;
 
 import androidx.databinding.BindingAdapter;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.acn.componenthealthmonitor.deviceScan.BleRecyclerAdapter;
 
 import java.util.List;
 

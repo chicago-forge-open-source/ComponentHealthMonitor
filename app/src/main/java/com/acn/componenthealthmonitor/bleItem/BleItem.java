@@ -1,4 +1,4 @@
-package com.acn.componenthealthmonitor;
+package com.acn.componenthealthmonitor.bleItem;
 
 import android.bluetooth.BluetoothDevice;
 import android.os.Parcel;
@@ -11,7 +11,7 @@ public class BleItem implements Parcelable {
     private BluetoothDevice device;
     private String name;
 
-    BleItem() {}
+    public BleItem() {}
 
     public BleItem(ScanResult result) {
         this.device = result.getDevice();

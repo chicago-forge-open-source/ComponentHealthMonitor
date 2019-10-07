@@ -3,6 +3,8 @@ package com.acn.componenthealthmonitor;
 import android.bluetooth.BluetoothDevice;
 import android.content.Context;
 
+import com.acn.componenthealthmonitor.bleItem.BleItem;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

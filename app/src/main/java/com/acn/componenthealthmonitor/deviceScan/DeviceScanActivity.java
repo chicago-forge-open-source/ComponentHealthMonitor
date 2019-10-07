@@ -10,8 +10,7 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.acn.componenthealthmonitor.BleItem;
-import com.acn.componenthealthmonitor.BleRecyclerAdapter;
+import com.acn.componenthealthmonitor.bleItem.BleItem;
 import com.acn.componenthealthmonitor.PermissionsHelper;
 import com.acn.componenthealthmonitor.R;
 import com.acn.componenthealthmonitor.databinding.ActivityDeviceScanBinding;

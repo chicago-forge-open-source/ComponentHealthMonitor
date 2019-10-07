@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.acn.componenthealthmonitor.bleItem.BleItem;
 import com.acn.componenthealthmonitor.databinding.ActivityMainBinding;
 import com.acn.componenthealthmonitor.deviceScan.DeviceScanActivity;
 import com.github.mikephil.charting.charts.LineChart;
@@ -19,7 +20,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import no.nordicsemi.android.thingylib.ThingyListenerHelper;
 import no.nordicsemi.android.thingylib.ThingySdkManager;
 
-import static com.acn.componenthealthmonitor.BleRecyclerAdapter.EXTRA_BLUETOOTH;
+import static com.acn.componenthealthmonitor.deviceScan.BleRecyclerAdapter.EXTRA_BLUETOOTH;
 import static com.acn.componenthealthmonitor.deviceScan.DeviceScanActivity.INITIAL_CONFIGURATION_RESULT;
 
 public class MainActivity extends AppCompatActivity implements ThingySdkManager.ServiceConnectionListener {

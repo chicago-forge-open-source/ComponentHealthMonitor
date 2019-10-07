@@ -1,4 +1,4 @@
-package com.acn.componenthealthmonitor;
+package com.acn.componenthealthmonitor.deviceScan;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -10,17 +10,19 @@ import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.acn.componenthealthmonitor.bleItem.BleItem;
+import com.acn.componenthealthmonitor.R;
 import com.acn.componenthealthmonitor.databinding.ListBleItemBinding;
 
 import java.util.List;
 
 public class BleRecyclerAdapter extends RecyclerView.Adapter<BleRecyclerAdapter.BleViewHolder> {
 
-    static final String EXTRA_BLUETOOTH = "EXTRA_BLUETOOTH";
+    public static final String EXTRA_BLUETOOTH = "EXTRA_BLUETOOTH";
     private List<BleItem> items;
     private Activity parentActivity;
 
-    public BleRecyclerAdapter(Activity parentActivity) {
+    BleRecyclerAdapter(Activity parentActivity) {
         this.parentActivity = parentActivity;
     }
 
@@ -74,7 +76,7 @@ public class BleRecyclerAdapter extends RecyclerView.Adapter<BleRecyclerAdapter.
             this.binding = binding;
         }
 
-        public void bind(BleItem item) {
+        void bind(BleItem item) {
             binding.setItem(item);
         }
     }
