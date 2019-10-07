@@ -1,6 +1,7 @@
 package com.acn.componenthealthmonitor;
 
 import android.content.Context;
+import android.graphics.Color;
 
 import androidx.test.platform.app.InstrumentationRegistry;
 
@@ -67,5 +68,21 @@ public class LineChartManagerTest {
         lineChartManager.configureChartSettings(lineChart);
 
         verify(lineChart).setTouchEnabled(true);
+    }
+
+    @Test
+    public void configureChartSettings_setDrawGridBackgroundDisabled() {
+        LineChart lineChart = mock(LineChart.class);
+        lineChartManager.configureChartSettings(lineChart);
+
+        verify(lineChart).setDrawGridBackground(false);
+    }
+
+    @Test
+    public void configureChartSettings_setBackgroundColorToWhite() {
+        LineChart lineChart = mock(LineChart.class);
+        lineChartManager.configureChartSettings(lineChart);
+
+        verify(lineChart).setBackgroundColor(Color.WHITE);
     }
 }
