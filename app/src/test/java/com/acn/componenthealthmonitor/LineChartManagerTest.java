@@ -7,12 +7,13 @@ import androidx.test.platform.app.InstrumentationRegistry;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
+import com.github.mikephil.charting.data.LineDataSet;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
-import org.robolectric.annotation.internal.Instrument;
 
 import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;
@@ -35,7 +36,7 @@ public class LineChartManagerTest {
 
     @Test
     public void configureChartSettings_setsDragEnabled() {
-        LineChart lineChart  = new LineChart(context);
+        LineChart lineChart = new LineChart(context);
         lineChartManager.configureChartSettings(lineChart);
 
         assertTrue(lineChart.isDragEnabled());
@@ -43,7 +44,7 @@ public class LineChartManagerTest {
 
     @Test
     public void configureChartSettings_setPinchZoomEnabled() {
-        LineChart lineChart  = new LineChart(context);
+        LineChart lineChart = new LineChart(context);
         lineChartManager.configureChartSettings(lineChart);
 
         assertTrue(lineChart.isPinchZoomEnabled());
@@ -51,7 +52,7 @@ public class LineChartManagerTest {
 
     @Test
     public void configureChartSettings_setScaleEnabled() {
-        LineChart lineChart  = new LineChart(context);
+        LineChart lineChart = new LineChart(context);
         lineChartManager.configureChartSettings(lineChart);
 
         assertTrue(lineChart.isScaleXEnabled());
@@ -60,7 +61,7 @@ public class LineChartManagerTest {
 
     @Test
     public void configureChartSettings_setAutoScaleEnabled() {
-        LineChart lineChart  = new LineChart(context);
+        LineChart lineChart = new LineChart(context);
         lineChartManager.configureChartSettings(lineChart);
 
         assertTrue(lineChart.isAutoScaleMinMaxEnabled());
@@ -161,7 +162,7 @@ public class LineChartManagerTest {
         int axisYMaxValue = 1;
         lineChartManager.configureYAxis(lineChart, axisYMinValue, axisYMaxValue);
 
-        assertEquals(axisYMinValue, lineChart.getAxisLeft().getAxisMinimum(),0.1);
+        assertEquals(axisYMinValue, lineChart.getAxisLeft().getAxisMinimum(), 0.1);
         assertEquals(axisYMaxValue, lineChart.getAxisLeft().getAxisMaximum(), 0.1);
     }
 
@@ -190,5 +191,56 @@ public class LineChartManagerTest {
         lineChartManager.configureYAxis(lineChart, -1, 1);
 
         assertFalse(lineChart.getAxisRight().isEnabled());
+    }
+
+    @Test
+    public void createVectorDataSet_configuresXDataSet() {
+        LineDataSet[] dataSet = lineChartManager.createVectorDataSet();
+
+        LineDataSet x = dataSet[0];
+
+        assertEquals(Color.RED, x.getColor());
+        assertEquals(YAxis.AxisDependency.LEFT, x.getAxisDependency());
+        assertTrue(x.isDrawValuesEnabled());
+        assertTrue(x.isDrawCirclesEnabled());
+        assertFalse(x.isDrawCircleHoleEnabled());
+        assertEquals(6.5f, x.getValueTextSize(), 0);
+        assertEquals(2.0f, x.getLineWidth(), 0);
+
+        assertEquals(3, dataSet.length);
+    }
+
+    @Test
+    public void createVectorDataSet_configuresYDataSet() {
+        LineDataSet[] dataSet = lineChartManager.createVectorDataSet();
+
+        LineDataSet y = dataSet[1];
+
+        assertEquals(Color.GREEN, y.getColor());
+        assertEquals(YAxis.AxisDependency.LEFT, y.getAxisDependency());
+        assertTrue(y.isDrawValuesEnabled());
+        assertTrue(y.isDrawCirclesEnabled());
+        assertFalse(y.isDrawCircleHoleEnabled());
+        assertEquals(6.5f, y.getValueTextSize(), 0);
+        assertEquals(2.0f, y.getLineWidth(), 0);
+
+        assertEquals(3, dataSet.length);
+    }
+
+    @Test
+    public void createVectorDataSet_configuresZDataSet() {
+        LineDataSet[] dataSet = lineChartManager.createVectorDataSet();
+
+        LineDataSet z = dataSet[2];
+
+        assertEquals(Color.BLUE, z.getColor());
+        assertEquals(YAxis.AxisDependency.LEFT, z.getAxisDependency());
+        assertTrue(z.isDrawValuesEnabled());
+        assertTrue(z.isDrawCirclesEnabled());
+        assertFalse(z.isDrawCircleHoleEnabled());
+        assertEquals(6.5f, z.getValueTextSize(), 0);
+        assertEquals(2.0f, z.getLineWidth(), 0);
+
+        assertEquals(3, dataSet.length);
     }
 }

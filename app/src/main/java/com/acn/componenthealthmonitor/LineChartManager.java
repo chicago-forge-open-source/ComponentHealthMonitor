@@ -120,7 +120,7 @@ class LineChartManager {
         rightAxis.setEnabled(false);
     }
 
-    private LineDataSet[] createVectorDataSet() {
+    LineDataSet[] createVectorDataSet() {
         final LineDataSet[] lineDataSets = new LineDataSet[3];
 
         configureAxisDataSet(lineDataSets, "X", Color.RED, 0);
