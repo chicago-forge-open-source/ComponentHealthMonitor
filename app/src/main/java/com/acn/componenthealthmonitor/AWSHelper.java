@@ -9,7 +9,7 @@ import com.amazonaws.mobileconnectors.iot.AWSIotMqttQos;
 
 import static com.amazonaws.mobile.auth.core.internal.util.ThreadUtils.runOnUiThread;
 
-public class AWSHelper {
+class AWSHelper {
 
     private static final String LOG_TAG = "***";
     private AWSIotMqttManager mqttManager;
@@ -42,25 +42,13 @@ public class AWSHelper {
     }
 
     void turnLightOn() {
-        final String msg = "{\n" +
-                "  \"state\": {\n" +
-                "    \"desired\": {\n" +
-                "      \"state\": \"on\"\n" +
-                "    }\n" +
-                "  }\n" +
-                "}";
+        final String msg = createStateJson("on");
 
         publishToTopic(msg);
     }
 
     void turnLightOff() {
-        final String msg = "{\n" +
-                "  \"state\": {\n" +
-                "    \"desired\": {\n" +
-                "      \"state\": \"off\"\n" +
-                "    }\n" +
-                "  }\n" +
-                "}";
+        final String msg = createStateJson("off");
 
         publishToTopic(msg);
     }
@@ -80,5 +68,15 @@ public class AWSHelper {
         } catch (Exception e) {
             Log.e(LOG_TAG, "Disconnect error.", e);
         }
+    }
+
+    private String createStateJson(String state) {
+        return "{\n" +
+                "  \"state\": {\n" +
+                "    \"desired\": {\n" +
+                "\"state\": \"" + state + "\"\n" +
+                "    }\n" +
+                "  }\n" +
+                "}";
     }
 }
