@@ -1,8 +1,10 @@
 package com.acn.componenthealthmonitor;
 
 import android.bluetooth.BluetoothDevice;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 
@@ -14,8 +16,15 @@ import androidx.lifecycle.ViewModelProviders;
 import com.acn.componenthealthmonitor.bleItem.BleItem;
 import com.acn.componenthealthmonitor.databinding.ActivityMainBinding;
 import com.acn.componenthealthmonitor.deviceScan.DeviceScanActivity;
+import com.amazonaws.mobile.client.AWSMobileClient;
+import com.amazonaws.mobile.client.Callback;
+import com.amazonaws.mobile.client.UserStateDetails;
+import com.amazonaws.mobileconnectors.iot.AWSIotMqttManager;
 import com.github.mikephil.charting.charts.LineChart;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import java.util.UUID;
+import java.util.concurrent.CountDownLatch;
 
 import no.nordicsemi.android.thingylib.ThingyListenerHelper;
 import no.nordicsemi.android.thingylib.ThingySdkManager;
@@ -31,6 +40,9 @@ public class MainActivity extends AppCompatActivity implements ThingySdkManager.
     private ProgressBar componentHealthBar;
     private BleItem connectedDevice;
     private LineChartManager chartManager;
+    private static final String LOG_TAG = "***";
+    private static final String CUSTOMER_SPECIFIC_IOT_ENDPOINT = "a2soq6ydozn6i0-ats.iot.us-west-2.amazonaws.com";
+    private AWSHelper awsHelper;
 
 
     @Override
@@ -48,9 +60,9 @@ public class MainActivity extends AppCompatActivity implements ThingySdkManager.
         thingyListener = new BluetoothThingyListener(viewModel, thingySdkManager, chartManager);
         setConnectOnClickListener();
 
-        viewModel.setUpAWS(this);
-        viewModel.connectToAWS();
-        viewModel.turnLightOff();
+        awsHelper = new AWSHelper(setUpAWS());
+        awsHelper.connectToAWS();
+        awsHelper.turnLightOff();
     }
 
     @Override
@@ -70,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements ThingySdkManager.
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        viewModel.disconnectFromAWS();
+        awsHelper.disconnectFromAWS();
     }
 
     @Override
@@ -81,6 +93,33 @@ public class MainActivity extends AppCompatActivity implements ThingySdkManager.
             connectedDevice = data.getParcelableExtra(EXTRA_BLUETOOTH);
             viewModel.connectToDevice(this, thingySdkManager, connectedDevice);
         }
+    }
+
+    private AWSIotMqttManager setUpAWS() {
+        final CountDownLatch latch = new CountDownLatch(1);
+        AWSMobileClient.getInstance().initialize(
+                this,
+                new Callback<UserStateDetails>() {
+                    @Override
+                    public void onResult(UserStateDetails result) {
+                        latch.countDown();
+                    }
+
+                    @Override
+                    public void onError(Exception e) {
+                        latch.countDown();
+                        Log.e(LOG_TAG, "onError: ", e);
+                    }
+                }
+        );
+
+        try {
+            latch.await();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        String clientId = UUID.randomUUID().toString();
+        return new AWSIotMqttManager(clientId, CUSTOMER_SPECIFIC_IOT_ENDPOINT);
     }
 
     private void setConnectOnClickListener() {
