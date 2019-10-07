@@ -50,4 +50,12 @@ public class LineChartManagerTest {
         assertTrue(lineChart.isScaleXEnabled());
         assertTrue(lineChart.isScaleYEnabled());
     }
+
+    @Test
+    public void configureChartSettings_setAutoScaleEnabled() {
+        LineChart lineChart  = new LineChart(context);
+        lineChartManager.configureChartSettings(lineChart);
+
+        assertTrue(lineChart.isAutoScaleMinMaxEnabled());
+    }
 }
