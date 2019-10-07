@@ -143,4 +143,13 @@ public class LineChartManagerTest {
 
         assertNotNull(lineChart.getAxisLeft().getValueFormatter());
     }
+
+    @Test
+    public void configureYAxis_setDrawLabelsEnabled() {
+        LineChart lineChart = new LineChart(context);
+
+        lineChartManager.configureYAxis(lineChart, -1, 1);
+
+        assertTrue(lineChart.getAxisLeft().isDrawLabelsEnabled());
+    }
 }
