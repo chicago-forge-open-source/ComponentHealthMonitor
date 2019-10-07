@@ -8,12 +8,17 @@ import androidx.test.platform.app.InstrumentationRegistry;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
+
+import java.util.List;
 
 import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;
@@ -242,5 +247,53 @@ public class LineChartManagerTest {
         assertEquals(2.0f, z.getLineWidth(), 0);
 
         assertEquals(3, dataSet.length);
+    }
+
+    @Test
+    public void addGravityVectorEntry_addsEntryToGravityChart() {
+        float xValue = 1.2f;
+        float yValue = 2.3f;
+        float zValue = 3.4f;
+
+        LineChart gravityLineChart = new LineChart(context);
+        LineChartManager lineChartManager = new LineChartManager(gravityLineChart, null);
+        lineChartManager.prepareVectorChart(gravityLineChart, -10f, 10f, "Gravity Chart");
+        lineChartManager.addGravityVectorEntry(xValue, yValue, zValue);
+
+        LineData data = gravityLineChart.getData();
+
+        ILineDataSet xDataSet = data.getDataSetByIndex(0);
+        assertEquals(xValue, xDataSet.getYMax(), 0);
+
+        ILineDataSet yDataSet = data.getDataSetByIndex(1);
+        assertEquals(yValue, yDataSet.getYMax(), 1);
+
+        ILineDataSet zDataSet = data.getDataSetByIndex(2);
+        assertEquals(zValue, zDataSet.getYMax(), 2);
+
+    }
+
+    @Test
+    public void addAccelerationVectorEntry_addsEntryToAccelerationChart() {
+        float xValue = 4.5f;
+        float yValue = 5.5f;
+        float zValue = 6.5f;
+
+        LineChart accelerationLineChart = new LineChart(context);
+        LineChartManager lineChartManager = new LineChartManager(accelerationLineChart, null);
+        lineChartManager.prepareVectorChart(accelerationLineChart, -5f, 5f, "Acceleration Chart");
+        lineChartManager.addAccelerationVectorEntry(xValue, yValue, zValue);
+
+        LineData data = accelerationLineChart.getData();
+
+        ILineDataSet xDataSet = data.getDataSetByIndex(0);
+        assertEquals(xValue, xDataSet.getYMax(), 0);
+
+        ILineDataSet yDataSet = data.getDataSetByIndex(1);
+        assertEquals(yValue, yDataSet.getYMax(), 1);
+
+        ILineDataSet zDataSet = data.getDataSetByIndex(2);
+        assertEquals(zValue, zDataSet.getYMax(), 2);
+
     }
 }
