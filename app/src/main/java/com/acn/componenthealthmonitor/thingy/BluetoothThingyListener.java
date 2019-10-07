@@ -97,7 +97,9 @@ public class BluetoothThingyListener implements ThingyListener {
     @Override
     public void onAccelerometerValueChangedEvent(BluetoothDevice bluetoothDevice, float x, float y, float z) {
         chartManager.addAccelerationVectorEntry(x, y, z);
-        componentHealthBar.incrementProgressBy(-1);
+        if(z >= 2) {
+            componentHealthBar.incrementProgressBy(-1);
+        }
     }
 
     @Override
