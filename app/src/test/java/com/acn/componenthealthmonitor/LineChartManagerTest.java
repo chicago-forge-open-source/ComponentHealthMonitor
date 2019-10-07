@@ -152,4 +152,16 @@ public class LineChartManagerTest {
 
         assertTrue(lineChart.getAxisLeft().isDrawLabelsEnabled());
     }
+
+    @Test
+    public void configureYAxis_setMinMaxValues() {
+        LineChart lineChart = new LineChart(context);
+
+        int axisYMinValue = -1;
+        int axisYMaxValue = 1;
+        lineChartManager.configureYAxis(lineChart, axisYMinValue, axisYMaxValue);
+
+        assertEquals(axisYMinValue, lineChart.getAxisLeft().getAxisMinimum(),0.1);
+        assertEquals(axisYMaxValue, lineChart.getAxisLeft().getAxisMaximum(), 0.1);
+    }
 }
