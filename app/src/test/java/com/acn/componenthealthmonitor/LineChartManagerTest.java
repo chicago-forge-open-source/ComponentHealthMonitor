@@ -96,4 +96,13 @@ public class LineChartManagerTest {
 
         assertEquals(XAxis.XAxisPosition.BOTTOM, lineChart.getXAxis().getPosition());
     }
+
+    @Test
+    public void configureXAxis_setTextColorToBlack() {
+        LineChart lineChart = new LineChart(context);
+
+        lineChartManager.configureXAxis(lineChart);
+
+        assertEquals(Color.BLACK, lineChart.getXAxis().getTextColor());
+    }
 }
