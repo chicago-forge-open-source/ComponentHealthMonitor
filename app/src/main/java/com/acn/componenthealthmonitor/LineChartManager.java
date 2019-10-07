@@ -89,13 +89,13 @@ class LineChartManager {
     }
 
     void configureChartSettings(LineChart lineChart) {
-        lineChart.setTouchEnabled(true);
+        lineChart.setTouchEnabled(true); //
         lineChart.setDragEnabled(true);
         lineChart.setPinchZoom(true);
         lineChart.setScaleEnabled(true);
         lineChart.setAutoScaleMinMaxEnabled(true);
-        lineChart.setDrawGridBackground(false);
-        lineChart.setBackgroundColor(Color.WHITE);
+        lineChart.setDrawGridBackground(false); //
+        lineChart.setBackgroundColor(Color.WHITE); //
     }
 
     private void configureXAxis(LineChart lineChart) {

@@ -13,6 +13,8 @@ import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.internal.Instrument;
 
 import static junit.framework.TestCase.assertTrue;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
 @RunWith(RobolectricTestRunner.class)
 public class LineChartManagerTest {
@@ -57,5 +59,13 @@ public class LineChartManagerTest {
         lineChartManager.configureChartSettings(lineChart);
 
         assertTrue(lineChart.isAutoScaleMinMaxEnabled());
+    }
+
+    @Test
+    public void configureChartSettings_setTouchEnabled() {
+        LineChart lineChart = mock(LineChart.class);
+        lineChartManager.configureChartSettings(lineChart);
+
+        verify(lineChart).setTouchEnabled(true);
     }
 }
