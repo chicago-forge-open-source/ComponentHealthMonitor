@@ -64,7 +64,7 @@ public class BluetoothThingyListenerTest {
 
         listener.onAccelerometerValueChangedEvent(null, 1, 2, 3);
 
-        verify(mockComponentHealthBar).incrementProgressBy(-1);
+        verify(mockComponentHealthBar).incrementProgressBy(-5);
     }
 
     @Test
@@ -73,7 +73,7 @@ public class BluetoothThingyListenerTest {
 
         listener.onAccelerometerValueChangedEvent(null, 1, 2, 1);
 
-        verify(mockComponentHealthBar, never()).incrementProgressBy(-1);
+        verify(mockComponentHealthBar, never()).incrementProgressBy(-5);
     }
 
     @Test
@@ -82,7 +82,7 @@ public class BluetoothThingyListenerTest {
 
         listener.onAccelerometerValueChangedEvent(null, 1, 2, -3);
 
-        verify(mockComponentHealthBar).incrementProgressBy(-1);
+        verify(mockComponentHealthBar).incrementProgressBy(-5);
     }
 
     @Test
