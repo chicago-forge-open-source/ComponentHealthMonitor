@@ -98,7 +98,7 @@ class LineChartManager {
         lineChart.setBackgroundColor(Color.WHITE); //
     }
 
-    private void configureXAxis(LineChart lineChart) {
+    void configureXAxis(LineChart lineChart) {
         XAxis xAxis = lineChart.getXAxis();
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
         xAxis.setTextColor(Color.BLACK);

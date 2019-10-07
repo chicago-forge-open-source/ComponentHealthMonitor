@@ -6,6 +6,7 @@ import android.graphics.Color;
 import androidx.test.platform.app.InstrumentationRegistry;
 
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.XAxis;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -14,6 +15,7 @@ import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.internal.Instrument;
 
 import static junit.framework.TestCase.assertTrue;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
@@ -84,5 +86,14 @@ public class LineChartManagerTest {
         lineChartManager.configureChartSettings(lineChart);
 
         verify(lineChart).setBackgroundColor(Color.WHITE);
+    }
+
+    @Test
+    public void configureXAxis_setsPositionToBottom() {
+        LineChart lineChart = new LineChart(context);
+
+        lineChartManager.configureXAxis(lineChart);
+
+        assertEquals(XAxis.XAxisPosition.BOTTOM, lineChart.getXAxis().getPosition());
     }
 }
