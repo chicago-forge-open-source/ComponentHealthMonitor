@@ -50,4 +50,19 @@ public class AWSHelperTest {
 
         verify(mockManager).publishString(expectedMessage, "$aws/things/IoTLight/shadow/update", AWSIotMqttQos.QOS0);
     }
+
+    @Test
+    public void turnLightOff_publishesToTopic() {
+        String expectedMessage = "{\n" +
+                "  \"state\": {\n" +
+                "    \"desired\": {\n" +
+                "      \"state\": \"off\"\n" +
+                "    }\n" +
+                "  }\n" +
+                "}";
+
+        awsHelper.turnLightOff();
+
+        verify(mockManager).publishString(expectedMessage, "$aws/things/IoTLight/shadow/update", AWSIotMqttQos.QOS0);
+    }
 }
