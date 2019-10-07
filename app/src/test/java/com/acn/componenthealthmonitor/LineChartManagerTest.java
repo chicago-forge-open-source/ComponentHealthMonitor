@@ -182,4 +182,13 @@ public class LineChartManagerTest {
 
         assertTrue(lineChart.getAxisLeft().isDrawZeroLineEnabled());
     }
+
+    @Test
+    public void configureYAxis_setAxisRightDisabled() {
+        LineChart lineChart = new LineChart(context);
+
+        lineChartManager.configureYAxis(lineChart, -1, 1);
+
+        assertFalse(lineChart.getAxisRight().isEnabled());
+    }
 }
