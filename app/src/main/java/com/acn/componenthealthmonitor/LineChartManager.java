@@ -106,7 +106,7 @@ class LineChartManager {
         xAxis.setAvoidFirstLastClipping(true);
     }
 
-    private void configureYAxis(LineChart lineChart, float axisYMinValue, float axisYMaxValue) {
+    void configureYAxis(LineChart lineChart, float axisYMinValue, float axisYMaxValue) {
         YAxis leftAxis = lineChart.getAxisLeft();
         leftAxis.setTextColor(Color.BLACK);
         leftAxis.setValueFormatter(new VectorYValueFormatter());

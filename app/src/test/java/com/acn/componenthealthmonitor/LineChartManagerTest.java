@@ -124,4 +124,13 @@ public class LineChartManagerTest {
 
         assertTrue(lineChart.getXAxis().isAvoidFirstLastClippingEnabled());
     }
+
+    @Test
+    public void configureYAxis_setTextColorToBlack() {
+        LineChart lineChart = new LineChart(context);
+
+        lineChartManager.configureYAxis(lineChart, -1, 1);
+
+        assertEquals(Color.BLACK, lineChart.getAxisLeft().getTextColor());
+    }
 }
