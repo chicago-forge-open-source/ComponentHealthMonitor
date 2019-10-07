@@ -1,10 +1,10 @@
 package com.acn.componenthealthmonitor.thingy;
 
 import android.bluetooth.BluetoothDevice;
+import android.widget.ProgressBar;
 
 import com.acn.componenthealthmonitor.LineChartManager;
 import com.acn.componenthealthmonitor.MainActivityViewModel;
-import com.acn.componenthealthmonitor.thingy.BluetoothThingyListener;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -24,7 +24,7 @@ public class BluetoothThingyListenerTest {
     public void onServiceDiscoveryCompleted_callsViewModel() {
         ThingySdkManager mockThingySdkManager = mock(ThingySdkManager.class);
         MainActivityViewModel mockViewModel = mock(MainActivityViewModel.class);
-        BluetoothThingyListener listener = new BluetoothThingyListener(mockViewModel, mockThingySdkManager, null);
+        BluetoothThingyListener listener = new BluetoothThingyListener(mockViewModel, mockThingySdkManager, null, null);
 
         listener.onServiceDiscoveryCompleted(null);
 
@@ -34,7 +34,8 @@ public class BluetoothThingyListenerTest {
     @Test
     public void onAccelerometerValueChanged_sendsDataToChartManager() {
         LineChartManager mockChartManager = mock(LineChartManager.class);
-        BluetoothThingyListener listener = new BluetoothThingyListener(null, null, mockChartManager);
+        ProgressBar componentHealthBar = mock(ProgressBar.class);
+        BluetoothThingyListener listener = new BluetoothThingyListener(null, null, mockChartManager, componentHealthBar);
 
         listener.onAccelerometerValueChangedEvent(null, 1, 2, 3);
 
@@ -44,10 +45,21 @@ public class BluetoothThingyListenerTest {
     @Test
     public void onGravityVectorChanged_sendsDataToChartManager() {
         LineChartManager mockChartManager = mock(LineChartManager.class);
-        BluetoothThingyListener listener = new BluetoothThingyListener(null, null, mockChartManager);
+        BluetoothThingyListener listener = new BluetoothThingyListener(null, null, mockChartManager, null);
 
         listener.onGravityVectorChangedEvent(null, 1, 2, 3);
 
         verify(mockChartManager).addGravityVectorEntry(1, 2, 3);
+    }
+
+    @Test
+    public void onAccelerometerValueChanged_zValueGreaterThanOrEqualTo2DecreasesProgressBar() {
+        LineChartManager mockChartManager = mock(LineChartManager.class);
+        ProgressBar componentHealthBar = mock(ProgressBar.class);
+        BluetoothThingyListener listener = new BluetoothThingyListener(null, null, mockChartManager, componentHealthBar);
+
+        listener.onAccelerometerValueChangedEvent(null, 1, 2, 3);
+
+        verify(componentHealthBar).incrementProgressBy(-1);
     }
 }

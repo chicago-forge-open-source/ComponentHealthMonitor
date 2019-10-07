@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity implements ThingySdkManager.
 
         componentHealthBar = findViewById(R.id.component_health_bar);
         thingySdkManager = ThingySdkManager.getInstance();
-        thingyListener = new BluetoothThingyListener(viewModel, thingySdkManager, chartManager);
+        thingyListener = new BluetoothThingyListener(viewModel, thingySdkManager, chartManager, componentHealthBar);
         setConnectOnClickListener();
 
         awsHelper = new AWSHelper(setUpAWS());

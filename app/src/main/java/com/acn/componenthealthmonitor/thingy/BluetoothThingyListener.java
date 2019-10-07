@@ -1,6 +1,7 @@
 package com.acn.componenthealthmonitor.thingy;
 
 import android.bluetooth.BluetoothDevice;
+import android.widget.ProgressBar;
 
 import com.acn.componenthealthmonitor.LineChartManager;
 import com.acn.componenthealthmonitor.MainActivityViewModel;
@@ -13,11 +14,14 @@ public class BluetoothThingyListener implements ThingyListener {
     private MainActivityViewModel viewModel;
     private ThingySdkManager thingySdkManager;
     private LineChartManager chartManager;
+    private ProgressBar componentHealthBar;
 
-    public BluetoothThingyListener(MainActivityViewModel viewModel, ThingySdkManager thingySdkManager, LineChartManager chartManager) {
+    public BluetoothThingyListener(MainActivityViewModel viewModel, ThingySdkManager thingySdkManager, LineChartManager chartManager, ProgressBar componentHealthBar) {
         this.viewModel = viewModel;
         this.thingySdkManager = thingySdkManager;
         this.chartManager = chartManager;
+        this.componentHealthBar = componentHealthBar;
+        componentHealthBar.setProgress(100);
     }
 
     @Override
@@ -93,6 +97,7 @@ public class BluetoothThingyListener implements ThingyListener {
     @Override
     public void onAccelerometerValueChangedEvent(BluetoothDevice bluetoothDevice, float x, float y, float z) {
         chartManager.addAccelerationVectorEntry(x, y, z);
+        componentHealthBar.incrementProgressBy(-1);
     }
 
     @Override
