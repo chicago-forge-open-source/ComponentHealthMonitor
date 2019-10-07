@@ -2,7 +2,6 @@ package com.acn.componenthealthmonitor;
 
 import android.bluetooth.BluetoothDevice;
 import android.content.Context;
-import android.util.Log;
 
 import androidx.databinding.Bindable;
 import androidx.databinding.Observable;
@@ -10,13 +9,6 @@ import androidx.databinding.PropertyChangeRegistry;
 import androidx.lifecycle.ViewModel;
 
 import com.acn.componenthealthmonitor.bleItem.BleItem;
-import com.amazonaws.mobile.client.AWSMobileClient;
-import com.amazonaws.mobile.client.Callback;
-import com.amazonaws.mobile.client.UserStateDetails;
-import com.amazonaws.mobileconnectors.iot.AWSIotMqttManager;
-
-import java.util.UUID;
-import java.util.concurrent.CountDownLatch;
 
 import no.nordicsemi.android.thingylib.ThingySdkManager;
 

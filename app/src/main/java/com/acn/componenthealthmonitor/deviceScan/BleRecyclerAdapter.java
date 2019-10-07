@@ -10,8 +10,8 @@ import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.acn.componenthealthmonitor.bleItem.BleItem;
 import com.acn.componenthealthmonitor.R;
+import com.acn.componenthealthmonitor.bleItem.BleItem;
 import com.acn.componenthealthmonitor.databinding.ListBleItemBinding;
 
 import java.util.List;

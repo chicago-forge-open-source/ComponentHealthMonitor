@@ -1,7 +1,6 @@
 package com.acn.componenthealthmonitor;
 
 import android.bluetooth.BluetoothDevice;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;

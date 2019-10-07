@@ -1,18 +1,18 @@
 package com.acn.componenthealthmonitor.deviceScan;
 
+import android.content.pm.PackageManager;
+import android.os.Bundle;
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.pm.PackageManager;
-import android.os.Bundle;
-import android.util.Log;
-
-import com.acn.componenthealthmonitor.bleItem.BleItem;
 import com.acn.componenthealthmonitor.PermissionsHelper;
 import com.acn.componenthealthmonitor.R;
+import com.acn.componenthealthmonitor.bleItem.BleItem;
 import com.acn.componenthealthmonitor.databinding.ActivityDeviceScanBinding;
 
 import java.util.ArrayList;
@@ -44,7 +44,7 @@ public class DeviceScanActivity extends AppCompatActivity {
         RecyclerView recyclerView = binding.bleRecycler;
         recyclerView.setAdapter(adapter);
 
-        if(viewModel.prepareForScanning(new PermissionsHelper(this))) {
+        if (viewModel.prepareForScanning(new PermissionsHelper(this))) {
             viewModel.startBLEScanner(scanCallback);
         }
     }
