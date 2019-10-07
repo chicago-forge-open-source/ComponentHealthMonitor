@@ -41,4 +41,13 @@ public class LineChartManagerTest {
 
         assertTrue(lineChart.isPinchZoomEnabled());
     }
+
+    @Test
+    public void configureChartSettings_setScaleEnabled() {
+        LineChart lineChart  = new LineChart(context);
+        lineChartManager.configureChartSettings(lineChart);
+
+        assertTrue(lineChart.isScaleXEnabled());
+        assertTrue(lineChart.isScaleYEnabled());
+    }
 }
