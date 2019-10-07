@@ -115,4 +115,13 @@ public class LineChartManagerTest {
 
         assertFalse(lineChart.getXAxis().isDrawGridLinesEnabled());
     }
+
+    @Test
+    public void configureXAxis_setClippingEnabled() {
+        LineChart lineChart = new LineChart(context);
+
+        lineChartManager.configureXAxis(lineChart);
+
+        assertTrue(lineChart.getXAxis().isAvoidFirstLastClippingEnabled());
+    }
 }
