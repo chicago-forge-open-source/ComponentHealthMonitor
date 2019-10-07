@@ -17,6 +17,7 @@ import org.robolectric.annotation.internal.Instrument;
 import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
@@ -132,5 +133,14 @@ public class LineChartManagerTest {
         lineChartManager.configureYAxis(lineChart, -1, 1);
 
         assertEquals(Color.BLACK, lineChart.getAxisLeft().getTextColor());
+    }
+
+    @Test
+    public void configureYAxis_setValueFormatting() {
+        LineChart lineChart = new LineChart(context);
+
+        lineChartManager.configureYAxis(lineChart, -1, 1);
+
+        assertNotNull(lineChart.getAxisLeft().getValueFormatter());
     }
 }
