@@ -26,17 +26,17 @@ import static com.acn.componenthealthmonitor.deviceScan.DeviceScanActivity.INITI
 public class MainActivity extends AppCompatActivity implements ThingySdkManager.ServiceConnectionListener {
 
     private MainActivityViewModel viewModel;
-    private ActivityMainBinding binding;
     private ThingySdkManager thingySdkManager;
     private BluetoothThingyListener thingyListener;
     private ProgressBar componentHealthBar;
     private BleItem connectedDevice;
     private LineChartManager chartManager;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        ActivityMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         viewModel = ViewModelProviders.of(this).get(MainActivityViewModel.class);
 
         configureCharts();
@@ -47,6 +47,10 @@ public class MainActivity extends AppCompatActivity implements ThingySdkManager.
         thingySdkManager = ThingySdkManager.getInstance();
         thingyListener = new BluetoothThingyListener(viewModel, thingySdkManager, chartManager);
         setConnectOnClickListener();
+
+        viewModel.setUpAWS(this);
+        viewModel.connectToAWS();
+        viewModel.turnLightOff();
     }
 
     @Override
@@ -61,6 +65,12 @@ public class MainActivity extends AppCompatActivity implements ThingySdkManager.
     protected void onStop() {
         super.onStop();
         thingySdkManager.unbindService(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        viewModel.disconnectFromAWS();
     }
 
     @Override
@@ -102,4 +112,5 @@ public class MainActivity extends AppCompatActivity implements ThingySdkManager.
         chartManager.prepareVectorChart(gravityChart, -10f, 10f, "Gravity Chart");
         chartManager.prepareVectorChart(accelerationChart, -5f, 5f, "Acceleration Chart");
     }
+
 }
