@@ -164,4 +164,13 @@ public class LineChartManagerTest {
         assertEquals(axisYMinValue, lineChart.getAxisLeft().getAxisMinimum(),0.1);
         assertEquals(axisYMaxValue, lineChart.getAxisLeft().getAxisMaximum(), 0.1);
     }
+
+    @Test
+    public void configureYAxis_setLabelCount() {
+        LineChart lineChart = new LineChart(context);
+
+        lineChartManager.configureYAxis(lineChart, -1, 1);
+
+        assertEquals(3, lineChart.getAxisLeft().getLabelCount());
+    }
 }
