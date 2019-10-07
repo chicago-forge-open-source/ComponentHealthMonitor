@@ -5,6 +5,7 @@ import android.widget.ProgressBar;
 
 import com.acn.componenthealthmonitor.LineChartManager;
 import com.acn.componenthealthmonitor.MainActivityViewModel;
+import com.acn.componenthealthmonitor.helper.AWSHelper;
 
 import no.nordicsemi.android.thingylib.ThingyListener;
 import no.nordicsemi.android.thingylib.ThingySdkManager;
@@ -15,13 +16,19 @@ public class BluetoothThingyListener implements ThingyListener {
     private ThingySdkManager thingySdkManager;
     private LineChartManager chartManager;
     private ProgressBar componentHealthBar;
+    private AWSHelper awsHelper;
 
-    public BluetoothThingyListener(MainActivityViewModel viewModel, ThingySdkManager thingySdkManager, LineChartManager chartManager, ProgressBar componentHealthBar) {
+    public BluetoothThingyListener(MainActivityViewModel viewModel,
+                                   ThingySdkManager thingySdkManager,
+                                   LineChartManager chartManager,
+                                   ProgressBar componentHealthBar,
+                                   AWSHelper awsHelper) {
         this.viewModel = viewModel;
         this.thingySdkManager = thingySdkManager;
         this.chartManager = chartManager;
         this.componentHealthBar = componentHealthBar;
-        componentHealthBar.setProgress(100);
+        this.awsHelper = awsHelper;
+        componentHealthBar.setProgress(10);
     }
 
     @Override
@@ -97,8 +104,12 @@ public class BluetoothThingyListener implements ThingyListener {
     @Override
     public void onAccelerometerValueChangedEvent(BluetoothDevice bluetoothDevice, float x, float y, float z) {
         chartManager.addAccelerationVectorEntry(x, y, z);
-        if(Math.abs(z) >= 2) {
+        if (Math.abs(z) >= 2) {
             componentHealthBar.incrementProgressBy(-1);
+        }
+
+        if (componentHealthBar.getProgress() == 0) {
+            awsHelper.turnLightOn();
         }
     }
 

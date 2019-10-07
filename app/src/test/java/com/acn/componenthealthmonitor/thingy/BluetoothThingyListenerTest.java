@@ -5,6 +5,7 @@ import android.widget.ProgressBar;
 
 import com.acn.componenthealthmonitor.LineChartManager;
 import com.acn.componenthealthmonitor.MainActivityViewModel;
+import com.acn.componenthealthmonitor.helper.AWSHelper;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,18 +18,20 @@ import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
+import static org.mockito.Mockito.when;
 
 @RunWith(RobolectricTestRunner.class)
 public class BluetoothThingyListenerTest {
 
     private ProgressBar componentHealthBar = mock(ProgressBar.class);
+    private LineChartManager mockChartManager = mock(LineChartManager.class);
+    private AWSHelper awsHelper = mock(AWSHelper.class);
 
     @Test
     public void onServiceDiscoveryCompleted_callsViewModel() {
         ThingySdkManager mockThingySdkManager = mock(ThingySdkManager.class);
         MainActivityViewModel mockViewModel = mock(MainActivityViewModel.class);
-        BluetoothThingyListener listener = new BluetoothThingyListener(mockViewModel, mockThingySdkManager, null, componentHealthBar);
+        BluetoothThingyListener listener = new BluetoothThingyListener(mockViewModel, mockThingySdkManager, null, componentHealthBar, null);
 
         listener.onServiceDiscoveryCompleted(null);
 
@@ -37,8 +40,7 @@ public class BluetoothThingyListenerTest {
 
     @Test
     public void onAccelerometerValueChanged_sendsDataToChartManager() {
-        LineChartManager mockChartManager = mock(LineChartManager.class);
-        BluetoothThingyListener listener = new BluetoothThingyListener(null, null, mockChartManager, componentHealthBar);
+        BluetoothThingyListener listener = new BluetoothThingyListener(null, null, mockChartManager, componentHealthBar, awsHelper);
 
         listener.onAccelerometerValueChangedEvent(null, 1, 2, 3);
 
@@ -47,8 +49,7 @@ public class BluetoothThingyListenerTest {
 
     @Test
     public void onGravityVectorChanged_sendsDataToChartManager() {
-        LineChartManager mockChartManager = mock(LineChartManager.class);
-        BluetoothThingyListener listener = new BluetoothThingyListener(null, null, mockChartManager, componentHealthBar);
+        BluetoothThingyListener listener = new BluetoothThingyListener(null, null, mockChartManager, componentHealthBar, null);
 
         listener.onGravityVectorChangedEvent(null, 1, 2, 3);
 
@@ -57,8 +58,7 @@ public class BluetoothThingyListenerTest {
 
     @Test
     public void onAccelerometerValueChanged_zValueGreaterThanOrEqualToTwoDecreasesProgressBar() {
-        LineChartManager mockChartManager = mock(LineChartManager.class);
-        BluetoothThingyListener listener = new BluetoothThingyListener(null, null, mockChartManager, componentHealthBar);
+        BluetoothThingyListener listener = new BluetoothThingyListener(null, null, mockChartManager, componentHealthBar, awsHelper);
 
         listener.onAccelerometerValueChangedEvent(null, 1, 2, 3);
 
@@ -67,8 +67,7 @@ public class BluetoothThingyListenerTest {
 
     @Test
     public void onAccelerometerValueChanged_zValueLessThanTwoDoesNotDecreaseHealthBar() {
-        LineChartManager mockChartManager = mock(LineChartManager.class);
-        BluetoothThingyListener listener = new BluetoothThingyListener(null, null, mockChartManager, componentHealthBar);
+        BluetoothThingyListener listener = new BluetoothThingyListener(null, null, mockChartManager, componentHealthBar, awsHelper);
 
         listener.onAccelerometerValueChangedEvent(null, 1, 2, 1);
 
@@ -77,11 +76,20 @@ public class BluetoothThingyListenerTest {
 
     @Test
     public void onAccelerometerValueChanged_zValueLessThanOrEqualToNegativeTwoDoesNotDecreaseHealthBar() {
-        LineChartManager mockChartManager = mock(LineChartManager.class);
-        BluetoothThingyListener listener = new BluetoothThingyListener(null, null, mockChartManager, componentHealthBar);
+        BluetoothThingyListener listener = new BluetoothThingyListener(null, null, mockChartManager, componentHealthBar, awsHelper);
 
         listener.onAccelerometerValueChangedEvent(null, 1, 2, -3);
 
         verify(componentHealthBar).incrementProgressBy(-1);
+    }
+
+    @Test
+    public void onAccelerometerValueChanged_ifHealthBarIsZeroTurnOnAWSLight() {
+        BluetoothThingyListener listener = new BluetoothThingyListener(null, null, mockChartManager, componentHealthBar, awsHelper);
+        when(componentHealthBar.getProgress()).thenReturn(0);
+
+        listener.onAccelerometerValueChangedEvent(null, 1, 2, -3);
+
+        verify(awsHelper).turnLightOn();
     }
 }
