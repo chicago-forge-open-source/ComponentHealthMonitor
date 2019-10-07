@@ -1,8 +1,10 @@
-package com.acn.componenthealthmonitor;
+package com.acn.componenthealthmonitor.helper;
 
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
+
+import com.acn.componenthealthmonitor.helper.PermissionsHelper;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

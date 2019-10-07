@@ -1,4 +1,4 @@
-package com.acn.componenthealthmonitor;
+package com.acn.componenthealthmonitor.helper;
 
 import android.Manifest;
 import android.app.Activity;

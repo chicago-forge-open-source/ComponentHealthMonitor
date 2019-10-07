@@ -10,7 +10,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.acn.componenthealthmonitor.PermissionsHelper;
+import com.acn.componenthealthmonitor.helper.PermissionsHelper;
 import com.acn.componenthealthmonitor.R;
 import com.acn.componenthealthmonitor.bleItem.BleItem;
 import com.acn.componenthealthmonitor.databinding.ActivityDeviceScanBinding;
@@ -21,7 +21,7 @@ import java.util.List;
 import no.nordicsemi.android.support.v18.scanner.ScanCallback;
 import no.nordicsemi.android.support.v18.scanner.ScanResult;
 
-import static com.acn.componenthealthmonitor.PermissionsHelper.ACCESS_COARSE_LOCATION_CODE;
+import static com.acn.componenthealthmonitor.helper.PermissionsHelper.ACCESS_COARSE_LOCATION_CODE;
 
 public class DeviceScanActivity extends AppCompatActivity {
 

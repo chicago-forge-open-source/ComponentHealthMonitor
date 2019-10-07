@@ -1,4 +1,4 @@
-package com.acn.componenthealthmonitor;
+package com.acn.componenthealthmonitor.helper;
 
 import android.util.Log;
 
@@ -9,16 +9,16 @@ import com.amazonaws.mobileconnectors.iot.AWSIotMqttQos;
 
 import static com.amazonaws.mobile.auth.core.internal.util.ThreadUtils.runOnUiThread;
 
-class AWSHelper {
+public class AWSHelper {
 
     private static final String LOG_TAG = "***";
     private AWSIotMqttManager mqttManager;
 
-    AWSHelper(AWSIotMqttManager mqttManager) {
+    public AWSHelper(AWSIotMqttManager mqttManager) {
         this.mqttManager = mqttManager;
     }
 
-    void connectToAWS() {
+    public void connectToAWS() {
         try {
             mqttManager.connect(AWSMobileClient.getInstance(), new AWSIotMqttClientStatusCallback() {
                 @Override
@@ -41,16 +41,24 @@ class AWSHelper {
         }
     }
 
-    void turnLightOn() {
+    public void turnLightOn() {
         final String msg = createStateJson("on");
 
         publishToTopic(msg);
     }
 
-    void turnLightOff() {
+    public void turnLightOff() {
         final String msg = createStateJson("off");
 
         publishToTopic(msg);
+    }
+
+    public void disconnectFromAWS() {
+        try {
+            mqttManager.disconnect();
+        } catch (Exception e) {
+            Log.e(LOG_TAG, "Disconnect error.", e);
+        }
     }
 
     private void publishToTopic(String msg) {
@@ -59,14 +67,6 @@ class AWSHelper {
             mqttManager.publishString(msg, topic, AWSIotMqttQos.QOS0);
         } catch (Exception e) {
             Log.e(LOG_TAG, "Publish error.", e);
-        }
-    }
-
-    void disconnectFromAWS() {
-        try {
-            mqttManager.disconnect();
-        } catch (Exception e) {
-            Log.e(LOG_TAG, "Disconnect error.", e);
         }
     }
 

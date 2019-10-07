@@ -1,7 +1,6 @@
 package com.acn.componenthealthmonitor.deviceScan;
 
-import com.acn.componenthealthmonitor.PermissionsHelper;
-import com.acn.componenthealthmonitor.deviceScan.DeviceScanViewModel;
+import com.acn.componenthealthmonitor.helper.PermissionsHelper;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

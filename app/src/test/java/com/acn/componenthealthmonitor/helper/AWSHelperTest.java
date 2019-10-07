@@ -1,5 +1,6 @@
-package com.acn.componenthealthmonitor;
+package com.acn.componenthealthmonitor.helper;
 
+import com.acn.componenthealthmonitor.helper.AWSHelper;
 import com.amazonaws.mobileconnectors.iot.AWSIotMqttManager;
 import com.amazonaws.mobileconnectors.iot.AWSIotMqttQos;
 
