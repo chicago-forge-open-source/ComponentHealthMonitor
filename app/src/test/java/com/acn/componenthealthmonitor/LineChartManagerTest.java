@@ -275,12 +275,12 @@ public class LineChartManagerTest {
 
     @Test
     public void addAccelerationVectorEntry_addsEntryToAccelerationChart() {
-        float xValue = 4.5f;
-        float yValue = 5.5f;
-        float zValue = 6.5f;
+        float xValue = 1.5f;
+        float yValue = 2.5f;
+        float zValue = 3.5f;
 
         LineChart accelerationLineChart = new LineChart(context);
-        LineChartManager lineChartManager = new LineChartManager(accelerationLineChart, null);
+        LineChartManager lineChartManager = new LineChartManager(null, accelerationLineChart);
         lineChartManager.prepareVectorChart(accelerationLineChart, -5f, 5f, "Acceleration Chart");
         lineChartManager.addAccelerationVectorEntry(xValue, yValue, zValue);
 

@@ -68,7 +68,6 @@ public class MainActivity extends AppCompatActivity implements ThingySdkManager.
 
         if (resultCode == RESULT_OK && data != null) {
             connectedDevice = data.getParcelableExtra(EXTRA_BLUETOOTH);
-            ((TextView)findViewById(R.id.header_device_name)).setText(connectedDevice.getName());
             viewModel.connectToDevice(this, thingySdkManager, connectedDevice);
         }
     }

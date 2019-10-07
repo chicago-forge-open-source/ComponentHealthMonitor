@@ -34,7 +34,7 @@
             android:layout_height="wrap_content"
             android:textStyle="bold"
             android:textSize="32sp"
-            android:text="@string/header_device_name"/>
+            android:text="@{viewModel.deviceName}"/>
     </LinearLayout>
 
     <TextView

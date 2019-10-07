@@ -11,7 +11,7 @@ public class BluetoothThingyListener implements ThingyListener {
     private ThingySdkManager thingySdkManager;
     private LineChartManager chartManager;
 
-    public BluetoothThingyListener(MainActivityViewModel viewModel, ThingySdkManager thingySdkManager, LineChartManager chartManager) {
+    BluetoothThingyListener(MainActivityViewModel viewModel, ThingySdkManager thingySdkManager, LineChartManager chartManager) {
         this.viewModel = viewModel;
         this.thingySdkManager = thingySdkManager;
         this.chartManager = chartManager;
