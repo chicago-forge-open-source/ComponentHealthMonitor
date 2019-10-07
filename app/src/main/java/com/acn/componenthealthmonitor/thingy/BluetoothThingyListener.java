@@ -28,7 +28,7 @@ public class BluetoothThingyListener implements ThingyListener {
         this.chartManager = chartManager;
         this.componentHealthBar = componentHealthBar;
         this.awsHelper = awsHelper;
-        componentHealthBar.setProgress(10);
+        componentHealthBar.setProgress(100);
     }
 
     @Override
