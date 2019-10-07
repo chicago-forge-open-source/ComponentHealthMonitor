@@ -58,6 +58,7 @@ public class MainActivity extends AppCompatActivity implements ThingySdkManager.
         binding.setLifecycleOwner(this);
 
         componentHealthBar = findViewById(R.id.component_health_bar);
+        componentHealthBar.setProgress(100);
         awsHelper = new AWSHelper(setUpAWS());
         awsHelper.connectToAWS();
 

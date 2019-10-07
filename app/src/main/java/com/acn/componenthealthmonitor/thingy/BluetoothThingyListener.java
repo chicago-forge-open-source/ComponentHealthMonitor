@@ -1,6 +1,7 @@
 package com.acn.componenthealthmonitor.thingy;
 
 import android.bluetooth.BluetoothDevice;
+import android.util.Log;
 import android.widget.ProgressBar;
 
 import com.acn.componenthealthmonitor.LineChartManager;
@@ -28,7 +29,6 @@ public class BluetoothThingyListener implements ThingyListener {
         this.chartManager = chartManager;
         this.componentHealthBar = componentHealthBar;
         this.awsHelper = awsHelper;
-        componentHealthBar.setProgress(100);
     }
 
     @Override
@@ -78,7 +78,8 @@ public class BluetoothThingyListener implements ThingyListener {
 
     @Override
     public void onButtonStateChangedEvent(BluetoothDevice bluetoothDevice, int buttonState) {
-
+        componentHealthBar.setProgress(100);
+        awsHelper.turnLightOff();
     }
 
     @Override
