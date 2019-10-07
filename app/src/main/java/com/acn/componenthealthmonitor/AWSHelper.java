@@ -72,11 +72,11 @@ class AWSHelper {
 
     private String createStateJson(String state) {
         return "{\n" +
-                "  \"state\": {\n" +
-                "    \"desired\": {\n" +
+                "\"state\": {\n" +
+                "\"desired\": {\n" +
                 "\"state\": \"" + state + "\"\n" +
-                "    }\n" +
-                "  }\n" +
+                "}\n" +
+                "}\n" +
                 "}";
     }
 }

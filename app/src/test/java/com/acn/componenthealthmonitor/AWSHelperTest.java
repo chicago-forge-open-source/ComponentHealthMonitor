@@ -33,11 +33,11 @@ public class AWSHelperTest {
     @Test
     public void turnLightOn_publishesToTopic() {
         String expectedMessage = "{\n" +
-                "  \"state\": {\n" +
-                "    \"desired\": {\n" +
-                "      \"state\": \"on\"\n" +
-                "    }\n" +
-                "  }\n" +
+                "\"state\": {\n" +
+                "\"desired\": {\n" +
+                "\"state\": \"on\"\n" +
+                "}\n" +
+                "}\n" +
                 "}";
 
         awsHelper.turnLightOn();
@@ -48,11 +48,11 @@ public class AWSHelperTest {
     @Test
     public void turnLightOff_publishesToTopic() {
         String expectedMessage = "{\n" +
-                "  \"state\": {\n" +
-                "    \"desired\": {\n" +
-                "      \"state\": \"off\"\n" +
-                "    }\n" +
-                "  }\n" +
+                "\"state\": {\n" +
+                "\"desired\": {\n" +
+                "\"state\": \"off\"\n" +
+                "}\n" +
+                "}\n" +
                 "}";
 
         awsHelper.turnLightOff();
