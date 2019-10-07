@@ -33,10 +33,16 @@ public class MainActivityViewModel extends ViewModel implements Observable {
     void connectToDevice(Context context, ThingySdkManager sdkManager, BleItem device) {
         if (sdkManager != null) {
             BluetoothDevice bluetoothDevice = device.getDevice();
-            deviceName = bluetoothDevice.getName();
-            notifyPropertyChanged(BR.deviceName);
+            changeDeviceName(bluetoothDevice);
             sdkManager.connectToThingy(context, bluetoothDevice, ThingyService.class);
             sdkManager.setSelectedDevice(bluetoothDevice);
+        }
+    }
+
+    private void changeDeviceName(BluetoothDevice bluetoothDevice) {
+        if (bluetoothDevice != null) {
+            deviceName = bluetoothDevice.getName();
+            notifyPropertyChanged(com.acn.componenthealthmonitor.BR.deviceName);
         }
     }
 

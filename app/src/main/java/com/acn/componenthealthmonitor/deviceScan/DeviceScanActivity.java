@@ -1,9 +1,8 @@
-package com.acn.componenthealthmonitor;
+package com.acn.componenthealthmonitor.deviceScan;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -11,12 +10,15 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.acn.componenthealthmonitor.BleItem;
+import com.acn.componenthealthmonitor.BleRecyclerAdapter;
+import com.acn.componenthealthmonitor.PermissionsHelper;
+import com.acn.componenthealthmonitor.R;
 import com.acn.componenthealthmonitor.databinding.ActivityDeviceScanBinding;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import no.nordicsemi.android.support.v18.scanner.BluetoothLeScannerCompat;
 import no.nordicsemi.android.support.v18.scanner.ScanCallback;
 import no.nordicsemi.android.support.v18.scanner.ScanResult;
 
@@ -24,7 +26,7 @@ import static com.acn.componenthealthmonitor.PermissionsHelper.ACCESS_COARSE_LOC
 
 public class DeviceScanActivity extends AppCompatActivity {
 
-    static final int INITIAL_CONFIGURATION_RESULT = 3;
+    public static final int INITIAL_CONFIGURATION_RESULT = 3;
     private ActivityDeviceScanBinding binding;
     private DeviceScanViewModel viewModel;
     private BleRecyclerAdapter adapter;

@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +12,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.acn.componenthealthmonitor.databinding.ActivityMainBinding;
+import com.acn.componenthealthmonitor.deviceScan.DeviceScanActivity;
 import com.github.mikephil.charting.charts.LineChart;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -20,7 +20,7 @@ import no.nordicsemi.android.thingylib.ThingyListenerHelper;
 import no.nordicsemi.android.thingylib.ThingySdkManager;
 
 import static com.acn.componenthealthmonitor.BleRecyclerAdapter.EXTRA_BLUETOOTH;
-import static com.acn.componenthealthmonitor.DeviceScanActivity.INITIAL_CONFIGURATION_RESULT;
+import static com.acn.componenthealthmonitor.deviceScan.DeviceScanActivity.INITIAL_CONFIGURATION_RESULT;
 
 public class MainActivity extends AppCompatActivity implements ThingySdkManager.ServiceConnectionListener {
 
@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity implements ThingySdkManager.
 
     @Override
     public void onServiceConnected() {
-        if(connectedDevice != null) {
+        if (connectedDevice != null) {
             BluetoothDevice device = connectedDevice.getDevice();
             if (thingySdkManager.hasInitialServiceDiscoverCompleted(device)) {
                 viewModel.afterInitialDiscoveryCompleted(thingySdkManager, device);

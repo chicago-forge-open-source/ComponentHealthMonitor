@@ -13,7 +13,7 @@ public class BleItem implements Parcelable {
 
     BleItem() {}
 
-    BleItem(ScanResult result) {
+    public BleItem(ScanResult result) {
         this.device = result.getDevice();
         this.name = result.getScanRecord() != null ? result.getScanRecord().getDeviceName() : null;
     }

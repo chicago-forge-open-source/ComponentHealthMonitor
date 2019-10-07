@@ -1,10 +1,13 @@
-package com.acn.componenthealthmonitor;
+package com.acn.componenthealthmonitor.deviceScan;
 
 import android.os.ParcelUuid;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
+
+import com.acn.componenthealthmonitor.BleItem;
+import com.acn.componenthealthmonitor.PermissionsHelper;
 
 import java.util.ArrayList;
 import java.util.Collections;

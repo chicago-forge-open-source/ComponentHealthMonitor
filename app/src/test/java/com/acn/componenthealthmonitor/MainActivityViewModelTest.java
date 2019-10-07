@@ -10,7 +10,6 @@ import org.robolectric.RobolectricTestRunner;
 
 import no.nordicsemi.android.thingylib.ThingySdkManager;
 
-import static org.junit.Assert.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.mock;
@@ -23,7 +22,7 @@ public class MainActivityViewModelTest {
     private BleItem bleItem;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         bleItem = new BleItem();
         bleItem.setName("Test");
     }

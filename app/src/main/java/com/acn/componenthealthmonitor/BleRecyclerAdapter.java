@@ -14,7 +14,7 @@ import com.acn.componenthealthmonitor.databinding.ListBleItemBinding;
 
 import java.util.List;
 
-class BleRecyclerAdapter extends RecyclerView.Adapter<BleRecyclerAdapter.BleViewHolder> {
+public class BleRecyclerAdapter extends RecyclerView.Adapter<BleRecyclerAdapter.BleViewHolder> {
 
     static final String EXTRA_BLUETOOTH = "EXTRA_BLUETOOTH";
     private List<BleItem> items;
