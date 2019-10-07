@@ -16,6 +16,7 @@ import org.robolectric.annotation.internal.Instrument;
 
 import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
@@ -104,5 +105,14 @@ public class LineChartManagerTest {
         lineChartManager.configureXAxis(lineChart);
 
         assertEquals(Color.BLACK, lineChart.getXAxis().getTextColor());
+    }
+
+    @Test
+    public void configureXAxis_setDrawGridLinesDisabled() {
+        LineChart lineChart = new LineChart(context);
+
+        lineChartManager.configureXAxis(lineChart);
+
+        assertFalse(lineChart.getXAxis().isDrawGridLinesEnabled());
     }
 }
