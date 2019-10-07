@@ -56,7 +56,7 @@ public class BluetoothThingyListenerTest {
     }
 
     @Test
-    public void onAccelerometerValueChanged_zValueGreaterThanOrEqualTo2DecreasesProgressBar() {
+    public void onAccelerometerValueChanged_zValueGreaterThanOrEqualToTwoDecreasesProgressBar() {
         LineChartManager mockChartManager = mock(LineChartManager.class);
         BluetoothThingyListener listener = new BluetoothThingyListener(null, null, mockChartManager, componentHealthBar);
 
@@ -73,5 +73,15 @@ public class BluetoothThingyListenerTest {
         listener.onAccelerometerValueChangedEvent(null, 1, 2, 1);
 
         verify(componentHealthBar, never()).incrementProgressBy(-1);
+    }
+
+    @Test
+    public void onAccelerometerValueChanged_zValueLessThanOrEqualToNegativeTwoDoesNotDecreaseHealthBar() {
+        LineChartManager mockChartManager = mock(LineChartManager.class);
+        BluetoothThingyListener listener = new BluetoothThingyListener(null, null, mockChartManager, componentHealthBar);
+
+        listener.onAccelerometerValueChangedEvent(null, 1, 2, -3);
+
+        verify(componentHealthBar).incrementProgressBy(-1);
     }
 }
