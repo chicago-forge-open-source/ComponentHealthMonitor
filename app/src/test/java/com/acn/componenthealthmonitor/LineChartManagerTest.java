@@ -34,5 +34,11 @@ public class LineChartManagerTest {
         assertTrue(lineChart.isDragEnabled());
     }
 
+    @Test
+    public void configureChartSettings_setPinchZoomEnabled() {
+        LineChart lineChart  = new LineChart(context);
+        lineChartManager.configureChartSettings(lineChart);
 
+        assertTrue(lineChart.isPinchZoomEnabled());
+    }
 }
