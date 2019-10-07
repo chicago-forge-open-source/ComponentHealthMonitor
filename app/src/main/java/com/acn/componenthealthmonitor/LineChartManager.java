@@ -19,12 +19,12 @@ import java.util.Date;
 
 import no.nordicsemi.android.thingylib.utils.ThingyUtils;
 
-class LineChartManager {
+public class LineChartManager {
 
     private final LineChart lineChartGravity;
     private final LineChart lineChartAcceleration;
 
-    LineChartManager(LineChart lineChartGravityVector, LineChart lineChartAccelerationVector) {
+    public LineChartManager(LineChart lineChartGravityVector, LineChart lineChartAccelerationVector) {
         this.lineChartGravity = lineChartGravityVector;
         this.lineChartAcceleration = lineChartAccelerationVector;
     }
@@ -51,11 +51,11 @@ class LineChartManager {
         configureYAxis(lineChart, axisYMinValue, axisYMaxValue);
     }
 
-    void addGravityVectorEntry(final float x, final float y, final float z) {
+    public void addGravityVectorEntry(final float x, final float y, final float z) {
         addVectorEntry(x, y, z, lineChartGravity);
     }
 
-    void addAccelerationVectorEntry(float x, float y, float z) {
+    public void addAccelerationVectorEntry(float x, float y, float z) {
         addVectorEntry(x, y, z, lineChartAcceleration);
     }
 

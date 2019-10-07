@@ -16,6 +16,8 @@ import com.acn.componenthealthmonitor.bleItem.BleItem;
 import com.acn.componenthealthmonitor.databinding.ActivityMainBinding;
 import com.acn.componenthealthmonitor.deviceScan.DeviceScanActivity;
 import com.acn.componenthealthmonitor.helper.AWSHelper;
+import com.acn.componenthealthmonitor.thingy.BluetoothThingyListener;
+import com.acn.componenthealthmonitor.thingy.ThingyService;
 import com.amazonaws.mobile.client.AWSMobileClient;
 import com.amazonaws.mobile.client.Callback;
 import com.amazonaws.mobile.client.UserStateDetails;

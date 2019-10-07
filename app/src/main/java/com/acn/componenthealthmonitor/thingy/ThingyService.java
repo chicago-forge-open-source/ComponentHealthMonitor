@@ -1,4 +1,4 @@
-package com.acn.componenthealthmonitor;
+package com.acn.componenthealthmonitor.thingy;
 
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -10,6 +10,9 @@ import android.content.Intent;
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
+
+import com.acn.componenthealthmonitor.MainActivity;
+import com.acn.componenthealthmonitor.R;
 
 import no.nordicsemi.android.thingylib.BaseThingyService;
 import no.nordicsemi.android.thingylib.ThingyConnection;

@@ -1,6 +1,9 @@
-package com.acn.componenthealthmonitor;
+package com.acn.componenthealthmonitor.thingy;
 
 import android.bluetooth.BluetoothDevice;
+
+import com.acn.componenthealthmonitor.LineChartManager;
+import com.acn.componenthealthmonitor.MainActivityViewModel;
 
 import no.nordicsemi.android.thingylib.ThingyListener;
 import no.nordicsemi.android.thingylib.ThingySdkManager;
@@ -11,7 +14,7 @@ public class BluetoothThingyListener implements ThingyListener {
     private ThingySdkManager thingySdkManager;
     private LineChartManager chartManager;
 
-    BluetoothThingyListener(MainActivityViewModel viewModel, ThingySdkManager thingySdkManager, LineChartManager chartManager) {
+    public BluetoothThingyListener(MainActivityViewModel viewModel, ThingySdkManager thingySdkManager, LineChartManager chartManager) {
         this.viewModel = viewModel;
         this.thingySdkManager = thingySdkManager;
         this.chartManager = chartManager;

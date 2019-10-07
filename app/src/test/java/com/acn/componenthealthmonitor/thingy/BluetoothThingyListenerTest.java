@@ -1,6 +1,10 @@
-package com.acn.componenthealthmonitor;
+package com.acn.componenthealthmonitor.thingy;
 
 import android.bluetooth.BluetoothDevice;
+
+import com.acn.componenthealthmonitor.LineChartManager;
+import com.acn.componenthealthmonitor.MainActivityViewModel;
+import com.acn.componenthealthmonitor.thingy.BluetoothThingyListener;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -4,6 +4,7 @@ import android.bluetooth.BluetoothDevice;
 import android.content.Context;
 
 import com.acn.componenthealthmonitor.bleItem.BleItem;
+import com.acn.componenthealthmonitor.thingy.ThingyService;
 
 import org.junit.Before;
 import org.junit.Test;

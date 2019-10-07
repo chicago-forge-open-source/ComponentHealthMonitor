@@ -9,6 +9,7 @@ import androidx.databinding.PropertyChangeRegistry;
 import androidx.lifecycle.ViewModel;
 
 import com.acn.componenthealthmonitor.bleItem.BleItem;
+import com.acn.componenthealthmonitor.thingy.ThingyService;
 
 import no.nordicsemi.android.thingylib.ThingySdkManager;
 
@@ -48,7 +49,7 @@ public class MainActivityViewModel extends ViewModel implements Observable {
         }
     }
 
-    void afterInitialDiscoveryCompleted(ThingySdkManager sdkManager, BluetoothDevice device) {
+    public void afterInitialDiscoveryCompleted(ThingySdkManager sdkManager, BluetoothDevice device) {
         sdkManager.enableButtonStateNotification(device, true);
         sdkManager.enableMotionNotifications(device, true);
     }
